@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('restaurant_id');
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->cascadeOnDelete();
             $table->string('name');
+            $table->string('slug');
             $table->text('description');
             $table->text('allergens')->nullable();
             $table->decimal('price');
