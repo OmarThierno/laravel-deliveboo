@@ -23,9 +23,9 @@
                     <label for="address" class="form-label">Address</label>
                     <input type="text" class="form-control" id="address" name="address" required>
                 </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image</label>
-                    <input type="text" class="form-control" id="image" name="image">
+                <div class="mb-3">  
+                    <label for="thumb" class="form-label fw-semibold">Image</label>
+                    <input type="file" class="form-control" id="thumb" name="thumb">
                 </div>
                 <div class="mb-3">
                     <label for="vat_number" class="form-label">VAT Number</label>
