@@ -20,8 +20,9 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.dishes.create');
     }
+    
 
     /**
      * Store a newly created resource in storage.
