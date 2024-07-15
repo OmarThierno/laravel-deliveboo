@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
@@ -37,7 +38,7 @@ class DishController extends Controller
         $dish->fill($data);
         $dish->visibility = 1;
         $dish->slug = Str::slug($request->name);
-        $dish->restaurant_id = 1;
+        // $dish->restaurant_id = Auth::id();
         $dish->save();
     }
 
