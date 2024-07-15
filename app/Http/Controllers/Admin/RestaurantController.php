@@ -14,8 +14,8 @@ class RestaurantController extends Controller
     public function index()
     {
         //prelevo tutti i dati
-        $restaurants = Restaurant::all();
-        return view('admin.restaurants.index', compact('restaurants') );
+        $restaurants = Restaurant::paginate(10);
+        return view('admin.restaurants.index', compact('restaurants'));
     }
 
     /**
@@ -37,9 +37,9 @@ class RestaurantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Restaurant $restaurant)
+    public function show(string $id)
     {
-        return view('admin.restaurants.show', compact('restaurant'));
+        //
     }
 
     /**

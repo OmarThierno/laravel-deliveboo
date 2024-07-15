@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>INDEX RISTORANTE </h1>
-
     <div class="container">
         <h1>Ristoranti</h1>
         <div class="d-flex justify-content-end">
@@ -16,7 +14,7 @@
                     <th>Business name</th>
                     <th>Address</th>
                     <th>Vat number</th>
-                    <th>Deteles</th>
+                    <th>Details</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -24,25 +22,19 @@
                 @foreach ($restaurants as $restaurant)
                     <tr>
                         <td>{{ $restaurant->id }}</td>
-                        {{-- aggiungo il type e se non c'è '?'' --}}
                         <td>{{ $restaurant->business_name }}</td>
                         <td>{{ $restaurant->address }}</td>
-                        <td>   {{ $restaurant->vat_number }}</td>
-                        <td> 
-                            {{-- Dettagli --}}
-                            <a class="btn btn-outline-warning btn-sm btn-details "
-                                href="{{ route('admin.restaurants.show', ['restaurant' => $restaurant->slug]) }}">Dettagli</a></td>
+                        <td>{{ $restaurant->vat_number }}</td>
+                        <td> <a class="btn btn-outline-warning btn-sm btn-details " href="">Dettagli</a></td>
                         <td>
                             <!-- Pulsanti -->
                             <div class="d-flex">
                                 {{-- MODIFICA --}}
-                                <a href="" type="button"
-                                    class="btn btn-outline-primary btn-sm me-2">
+                                <a href="" type="button" class="btn btn-outline-primary btn-sm me-2">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <!-- Button trigger modal -->
-                                <form action=""
-                                    method="POST">
+                                <form action="" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     {{-- CANCELLA --}}
@@ -57,6 +49,11 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
 
+        {{-- PAGINATE --}}
+        <div class="d-flex justify-content-end m-3">
+            {{ $restaurants->links('pagination::bootstrap-5') }}
+        </div>
+
+    </div>
 @endsection
