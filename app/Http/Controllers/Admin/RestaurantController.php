@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -13,8 +14,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
+        $user = Auth::id();
         //prelevo tutti i dati
-        $restaurants = Restaurant::paginate(10);
+        $restaurants = Restaurant::with('user')->where('user_id', $user)->paginate(10);
         return view('admin.restaurants.index', compact('restaurants'));
     }
 
