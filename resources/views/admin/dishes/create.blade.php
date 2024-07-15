@@ -14,10 +14,12 @@
                 <input type="text" class="form-control" id="name" name="name">
             </div>
 
-            <div class="mb-3">
+            <div class="form-group">
                 <label for="description" class="form-label fw-semibold">Descrizione</label>
-                <input type="text" class="form-control" id="description" name="description">
+                <textarea name="description" class="form-control" id="description"></textarea>
             </div>
+
+            
             
             <div class="mb-3">
                 <label for="allergens" class="form-label fw-semibold">Allergeni</label>
@@ -37,7 +39,7 @@
             <button class="btn btn-success" type="submit">Salva</button>
         </form>
 
-        {{-- <a href="{{ route('admin.sh.index') }}" class="text-decoration-none text-white bg-danger p-2 rounded-2">Torna
+        {{-- <a href="{{ route('admin.dishes.index') }}" class="text-decoration-none text-white bg-danger p-2 rounded-2">Torna
             alla pagina Iniziale</a> --}}
     </div>
 @endsection

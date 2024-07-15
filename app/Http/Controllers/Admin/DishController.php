@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+use App\Models\Dish;
 use Illuminate\Http\Request;
 
 class DishController extends Controller
@@ -29,7 +31,14 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $dish = new Dish();
+        $dish->fill($data);
+        $dish->visibility = 1;
+        $dish->slug = Str::slug($request->name);
+        $dish->restaurant_id = 1;
+        $dish->save();
     }
 
     /**
