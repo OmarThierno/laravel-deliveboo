@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use App\Models\Typology;
+use Illuminate\Support\Str;
 
 class RestaurantController extends Controller
 {
@@ -23,7 +25,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.restaurants.create');
     }
 
     /**
@@ -31,7 +33,36 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'business_name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'image' => 'nullable|string',
+            'vat_number' => 'required|integer',
+            'typology_name' => 'required|string|max:255',
+        ]);
+
+        $restaurant = Restaurant::create([
+            'user_id' => auth()->id(),
+            'business_name' => $request->business_name,
+            'slug' => Str::slug($request->business_name),
+            'address' => $request->address,
+            'image' => $request->image,
+            'vat_number' => $request->vat_number,
+        ]);
+
+        $this->associateTypology($restaurant, $request->typology_name);
+
+        return redirect()->route('admin.restaurants.create')->with('success', 'Restaurant and typology created successfully!');
+    }
+
+    /**
+     * Associate a typology with a restaurant.
+     */
+    private function associateTypology(Restaurant $restaurant, $typologyName)
+    {
+        $typology = Typology::firstOrCreate(['name' => $typologyName]);
+
+        $restaurant->typologies()->attach($typology->id);
     }
 
     /**
