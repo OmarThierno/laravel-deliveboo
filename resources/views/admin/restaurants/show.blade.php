@@ -6,12 +6,19 @@
         <p>Address: <span class="text-primary">{{ $restaurant->address }}</span></p>
         <p>Vat number: <span class="text-primary">{{ $restaurant->vat_number }}</span></p>
         
-            {{-- @foreach ($restaurant->typologies as $item)
-            <p class="badge fs-6">
-                {{$item->name}}
-                </p>
-            @endforeach --}}
-        
+        <ul>
+            @foreach ($restaurant->dishes as $dish)
+            <li>
+                {{$dish->name}}
+                </li>
+            @endforeach
+        </ul>
+
+        @foreach ($restaurant->dishes as $dish)
+            <p class="badge bg-primary">
+                {{$dish->allergens}}
+            </p>
+            @endforeach
         <a href="{{route('admin.restaurants.index')}}" class="text-danger">Torna Indietro</a>
     </div>
 @endsection
