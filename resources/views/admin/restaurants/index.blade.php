@@ -3,10 +3,12 @@
 @section('content')
     <div class="container">
         <h1>Ristoranti</h1>
-        <div class="d-flex justify-content-end">
+        
+            <div class="d-flex justify-content-end">
             {{-- i bottoni solo dentro il form!! --}}
-            <a class="btn btn-success m-3" href="">Crea</a>
+            <a class="btn btn-success m-3" href="{{ route('admin.restaurants.create') }}">Crea</a>
         </div>
+        
         <table class="table">
             <thead>
                 <tr>
@@ -51,9 +53,9 @@
         </table>
 
         {{-- PAGINATE --}}
-        <div class="d-flex justify-content-end m-3">
+        {{-- <div class="d-flex justify-content-end m-3">
             {{ $restaurants->links('pagination::bootstrap-5') }}
-        </div>
+        </div> --}}
 
     </div>
 @endsection

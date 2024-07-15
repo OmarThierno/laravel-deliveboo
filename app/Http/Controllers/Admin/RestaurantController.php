@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
@@ -16,8 +17,15 @@ class RestaurantController extends Controller
     {
         $user = Auth::id();
         //prelevo tutti i dati
-        $restaurants = Restaurant::with('user')->where('user_id', $user)->paginate(10);
-        return view('admin.restaurants.index', compact('restaurants'));
+        $restaurants = Restaurant::with('user')->where('user_id', $user)->get();
+        // ->paginate(10);
+        
+        if ($restaurants == null) {
+            $existRestaurant = false;
+        } else {
+            $existRestaurant = true;
+        }
+        return view('admin.restaurants.index', compact('restaurants', 'existRestaurant'));
     }
 
     /**
@@ -25,7 +33,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.restaurants.create');
     }
 
     /**
@@ -33,7 +41,13 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $restaurant = new Restaurant();
+        $restaurant->fill($data);
+        $restaurant->slug = Str::slug($request->business_name);
+        $restaurant->user_id = Auth::id();
+        $restaurant->save();
+        return redirect()->route('admin.restaurants.index');
     }
 
     /**
