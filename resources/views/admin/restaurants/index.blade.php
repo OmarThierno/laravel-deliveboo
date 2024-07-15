@@ -28,8 +28,10 @@
                         <td>{{ $restaurant->business_name }}</td>
                         <td>{{ $restaurant->address }}</td>
                         <td>   {{ $restaurant->vat_number }}</td>
-                        <td> <a class="btn btn-outline-warning btn-sm btn-details "
-                                href="">Dettagli</a></td>
+                        <td> 
+                            {{-- Dettagli --}}
+                            <a class="btn btn-outline-warning btn-sm btn-details "
+                                href="{{ route('admin.restaurants.show', ['restaurant' => $restaurant->slug]) }}">Dettagli</a></td>
                         <td>
                             <!-- Pulsanti -->
                             <div class="d-flex">
