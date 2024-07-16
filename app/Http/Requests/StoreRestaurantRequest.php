@@ -39,6 +39,7 @@ class StoreRestaurantRequest extends FormRequest
             'address.required' => 'Indirizzo mancante',
             'vat_number.required' => 'La partita IVA è mancante',
             'vat_number.max' => 'La partita IVA non deve supperare 11 carratteri',
+            'vat_number.min' => 'La partita IVA non deve avere meno di 11 carratteri',
             'typology_id.required' => 'Tipologia mancante: Inserire la tipologia',
             'typology_id.exists' => 'La tipologia inserita non è presente/esiste',
         ];
