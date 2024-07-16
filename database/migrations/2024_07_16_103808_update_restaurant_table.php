@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('restaurants', function (Blueprint $table) {    
-            $table->string('image')->nullable();
+        Schema::table('restaurants', function (Blueprint $table) {    
+            $table->string('image')->nullable()->change();
         });
     }
 
@@ -21,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('restaurants');
+        Schema::table('restaurants', function (Blueprint $table) {
+            $table->string('image')->change();
+        });
     }
 };
