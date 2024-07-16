@@ -41,6 +41,11 @@ class RestaurantController extends Controller
             'image' => 'nullable',
             'vat_number' => 'required|integer',
             'typology_id' => 'required|string|max:255',
+        ], [
+            'business_name.required' => 'Nome Business mancantedel business mancante',
+            'address.required' => 'Indirizzo mancante',
+            'vat_number.required' => 'La partita IVA è mancante',
+            'typology_id.required' => 'Tipologia mancante: Inserire la tipologia',
         ]);
 
         $data = $request->all();
