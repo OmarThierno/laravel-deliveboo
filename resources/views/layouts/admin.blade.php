@@ -66,6 +66,10 @@
                   href="{{ route('admin.restaurants.index') }}">
                   <i class="fa-solid fa-house"></i> Home
                 </a>
+                <a class="nav-link text-white {{ Route::currentRouteName() == 'index' ? 'bg-secondary' : '' }}"
+                  href="{{ route('admin.dishes.index') }}">
+                  <i class="fa-solid fa-bowl-food"></i> Disches
+                </a>
               </li>
             </ul>
 

@@ -15,7 +15,10 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::id();
+        $dishes = Dish::with('user')->where('restaurant_id', $user)->paginate(10);
+
+        return view('admin.dishes.index', compact('dishes'));
     }
 
     /**
@@ -45,25 +48,32 @@ class DishController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Dish $dish)
     {
-        //
+        return view('admin.dishes.show', compact('dish'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        $dish = Dish::where('slug', $slug)->first();
+        return view('admin.dishes.edit', compact('dish'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Dish $dish)
     {
-        //
+        $data = $request->all();
+        $dish->slug = Str::slug($request->name);
+
+        $dish->update($data);
+
+
+        return redirect()->route('admin.dishes.show');
     }
 
     /**

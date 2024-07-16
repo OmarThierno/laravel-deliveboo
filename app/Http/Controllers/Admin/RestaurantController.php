@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
-use App\Models\Typology;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\Typology;
 class RestaurantController extends Controller
 {
     /**
@@ -15,8 +15,16 @@ class RestaurantController extends Controller
      */
     public function index()
     {
+        $user = Auth::id();
         //prelevo tutti i dati
-        $restaurants = Restaurant::paginate(10);
+        $restaurants = Restaurant::with('user')->where('user_id', $user)->get();
+        // ->paginate(10);
+        
+        // if ($restaurants == null) {
+        //     $existRestaurant = false;
+        // } else {
+        //     $existRestaurant = true;
+        // }
         return view('admin.restaurants.index', compact('restaurants'));
     }
 
@@ -31,6 +39,7 @@ class RestaurantController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -41,16 +50,13 @@ class RestaurantController extends Controller
             'typology_name' => 'required|string|max:255',
         ]);
 
-        $restaurant = Restaurant::create([
-            'user_id' => auth()->id(),
-            'business_name' => $request->business_name,
-            'slug' => Str::slug($request->business_name),
-            'address' => $request->address,
-            'image' => $request->image,
-            'vat_number' => $request->vat_number,
-        ]);
-
+        $data = $request->all();
+        $restaurant = new Restaurant();
+        $restaurant->fill($data);
+        $restaurant->slug = Str::slug($request->business_name);
+        $restaurant->user_id = Auth::id();
         $this->associateTypology($restaurant, $request->typology_name);
+        $restaurant->save();
 
         return redirect()->route('admin.restaurants.create')->with('success', 'Restaurant and typology created successfully!');
     }
@@ -92,8 +98,10 @@ class RestaurantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Restaurant $restaurant)
     {
-        //
+        $restaurant->delete();
+        
+        return redirect()->route('admin.restaurants.index');
     }
 }
