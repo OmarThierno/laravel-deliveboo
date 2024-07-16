@@ -8,15 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Dish extends Model
 {
     use HasFactory;
-    public function user(){
-        
-        return $this->belongsTo(User::class);
-    }
 
+    // 1:N
     public function restaurant(){
 
         $this->belongsTo(Restaurant::class);
     }
 
-    protected $fillable = ['name', 'slug', 'description', 'allergens', 'price', 'visibility', 'thumb'];
+    // N:N
+    public function orders()
+    {
+        $this->belongsToMany(Order::class);
+    }
+
+    protected $fillable = ['restaurant_id', 'name', 'slug', 'description', 'allergens', 'price', 'visibility', 'thumb'];
 }
