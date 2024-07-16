@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRestaurantRequest;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,9 +16,14 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
-        $restaurant = Restaurant::with('user')->where('user_id', $user_id)->firstOrFail();
-        return view('admin.restaurants.show', compact('restaurant'));
+        $user = Auth::user();
+
+        if ($user->restaurant()->exists()) {
+            $restaurant = $user->restaurant;
+            return view('admin.restaurants.show', compact('restaurant'));
+        } else {
+            return view('admin.restaurants.index');
+        }
     }
 
     /**
@@ -33,7 +39,7 @@ class RestaurantController extends Controller
      * Store a newly created resource in storage.
      */
 
-    public function store(Request $request)
+    public function store(StoreRestaurantRequest $request)
     {
 
         $data = $request->validated();
@@ -41,22 +47,11 @@ class RestaurantController extends Controller
         $restaurant->fill($data);
         $restaurant->slug = Str::slug($request->business_name);
         $restaurant->user_id = Auth::id();
-        // $this->associateTypology($restaurant, $request->typology_name);
         $restaurant->save();
 
         $restaurant->typologies()->attach($request->typology_id);
 
-        return redirect()->route('admin.restaurants.create')->with('success', 'Restaurant and typology created successfully!');
-    }
-
-    /**
-     * Associate a typology with a restaurant.
-     */
-    private function associateTypology(Restaurant $restaurant, $typologyName)
-    {
-        $typology = Typology::firstOrCreate(['name' => $typologyName]);
-
-        $restaurant->typologies()->attach($typology->id);
+        return redirect()->route('admin.restaurants.show', $restaurant)->with('Successo!', 'Il Ristorante è stato creato correttamente!');
     }
 
     /**
