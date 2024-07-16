@@ -36,7 +36,7 @@
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <!-- Button trigger modal -->
-                                <form action="" method="POST">
+                                <form action="{{route('admin.restaurants.destroy', $restaurant->slug)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     {{-- CANCELLA --}}

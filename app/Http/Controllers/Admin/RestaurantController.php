@@ -77,8 +77,10 @@ class RestaurantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Restaurant $restaurant)
     {
-        //
+        $restaurant->delete();
+        
+        return redirect()->route('admin.restaurants.index');
     }
 }
