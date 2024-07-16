@@ -30,7 +30,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="vat_number" class="form-label">P. Iva</label>
-                        <input type="number" class="form-control" id="vat_number" name="vat_number" required>
+                        <input type="text" class="form-control" id="vat_number" name="vat_number" required>
                     </div>
                     <div class="mb-3">
                         <label for="typology_id" class="form-label">Tipologia</label>

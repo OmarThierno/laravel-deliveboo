@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRestaurantRequest;
+use App\Http\Requests\UpdateRestaurantRequest;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Typology;
+
 class RestaurantController extends Controller
 {
     /**
@@ -17,7 +19,7 @@ class RestaurantController extends Controller
     public function index()
     {
         $user = Auth::user();
-
+        //segna che il metodo restaurant() è undefined
         if ($user->restaurant()->exists()) {
             $restaurant = $user->restaurant;
             return view('admin.restaurants.show', compact('restaurant'));
@@ -77,26 +79,17 @@ class RestaurantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $slug)
+    public function update(UpdateRestaurantRequest $request, $slug)
     {
         $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
-
-        $request->validate([
-            'business_name' => 'required|string|max:255',
-            'address' => 'required|string',
-            'image' => 'nullable',
-            'vat_number' => 'required|integer',
-            'typology_id' => 'required|string|max:255',
-        ]);
-
-        $data = $request->all();
+        $data = $request->validated();
         $restaurant->fill($data);
         $restaurant->slug = Str::slug($request->business_name);
+
         // $this->associateTypology($restaurant, $request->typology_name);
         $restaurant->save();
-
+        //sync  permette di aggiornare le relazioni many-to-many rimuovendo e aggiungendo i record necessari
         $restaurant->typologies()->sync([$request->typology_id]);
-
         return redirect()->route('admin.restaurants.show', ['restaurant' => $restaurant->slug])->with('success', 'Restaurant updated successfully!');
     }
 
@@ -107,7 +100,7 @@ class RestaurantController extends Controller
     public function destroy(Restaurant $restaurant)
     {
         $restaurant->delete();
-        
+
         return redirect()->route('admin.restaurants.index');
     }
 }
