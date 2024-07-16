@@ -5,7 +5,7 @@
     <div class="container">
         <h1 class="my-5">Modifica un piatto!</h1>
 
-        <form action="{{ route('admin.dishes.update', ['dish' => $dish->slug]) }}" method="POST" class="mb-3">
+        <form action="{{ route('admin.dishes.update', ['dish' => $dish->slug]) }}" method="POST" class="mb-3" enctype=multipart/form-data>
             {{-- Cookie per far riconoscere il form al server --}}
             @csrf
             @method('PUT')

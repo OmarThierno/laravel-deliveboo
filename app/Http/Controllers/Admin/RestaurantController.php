@@ -20,12 +20,12 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::with('user')->where('user_id', $user)->get();
         // ->paginate(10);
         
-        if ($restaurants == null) {
-            $existRestaurant = false;
-        } else {
-            $existRestaurant = true;
-        }
-        return view('admin.restaurants.index', compact('restaurants', 'existRestaurant'));
+        // if ($restaurants == null) {
+        //     $existRestaurant = false;
+        // } else {
+        //     $existRestaurant = true;
+        // }
+        return view('admin.restaurants.index', compact('restaurants'));
     }
 
     /**

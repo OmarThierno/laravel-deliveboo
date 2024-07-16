@@ -15,7 +15,10 @@ class DishController extends Controller
      */
     public function index()
     {
-        return view('admin.dishes.index');
+        $user = Auth::id();
+        $dishes = Dish::with('user')->where('restaurant_id', $user)->paginate(10);
+
+        return view('admin.dishes.index', compact('dishes'));
     }
 
     /**
