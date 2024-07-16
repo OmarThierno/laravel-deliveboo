@@ -13,10 +13,10 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Allergens</th>
-                    <th>Price</th>
+                    <th>Nome</th>
+                    <th>Descrizione</th>
+                    <th>Allergeni</th>
+                    <th>Prezzo</th>
                 </tr>
             </thead>
             <tbody>
