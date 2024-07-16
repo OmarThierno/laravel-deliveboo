@@ -14,7 +14,10 @@
     </div>
 </div>
 
-<div class="content">
+<div class="content text-center">
+    
+        <span>&copy; 2024 Deliveboo </span> <br>
+        <span>Tutti i diritti riservati</span>
     
 </div>
 @endsection
