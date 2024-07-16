@@ -25,7 +25,7 @@ class StoreRestaurantRequest extends FormRequest
             'business_name' => ['required', 'max:255', 'min:4'],
             'address' => ['required'],
             'image' => ['nullable'],
-            'vat_number' => ['required', 'max:11'],
+            'vat_number' => ['required', 'min:11', 'max:11'],
             'typology_id' => ['required', 'exists:typologies,id'],
         ];
     }
