@@ -15,9 +15,6 @@
 </div>
 
 <div class="content">
-    <div class="container text-center ">
-        <p class="">Con noi puoi gestire il tuo ristorante</p>
-        <button class="btn btn-warning btn-welcome" type="button"> <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a></button>
-    </div>
+    
 </div>
 @endsection
