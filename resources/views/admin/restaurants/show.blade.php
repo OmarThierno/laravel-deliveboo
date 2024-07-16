@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container mt-5">
-        <p>Business name: <span class="text-primary">{{ $restaurant->business_name }}</span></p>
-        <p>Address: <span class="text-primary">{{ $restaurant->address }}</span></p>
-        <p>Vat number: <span class="text-primary">{{ $restaurant->vat_number }}</span></p>
+        <p>Nome del ristorante: <span class="text-primary">{{ $restaurant->business_name }}</span></p>
+        <p>Indirizzo: <span class="text-primary">{{ $restaurant->address }}</span></p>
+        <p>P. Iva : <span class="text-primary">{{ $restaurant->vat_number }}</span></p>
         
         <ul>
             @foreach ($restaurant->dishes as $dish)

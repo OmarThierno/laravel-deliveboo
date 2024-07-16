@@ -13,11 +13,11 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Business name</th>
-                    <th>Address</th>
-                    <th>Vat number</th>
-                    <th>Details</th>
-                    <th>Actions</th>
+                    <th>Nome del ristorante</th>
+                    <th>Indirizzo</th>
+                    <th>P. Iva</th>
+                    <th>Dettagli</th>
+                    <th>Azioni</th>
                 </tr>
             </thead>
             <tbody>
