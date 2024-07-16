@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <p class="fs-3 m-0">Accesso effettuato correttamente <span class="fw-semibold text-primary">{{ Auth::user()->name }}</span>!</p>
+                        <p class="fs-3 m-0">Accesso effettuato correttamente <span class="fw-semibold text-success">{{ Auth::user()->name }}</span>!</p>
                     </div>
                 </div>
             </div>

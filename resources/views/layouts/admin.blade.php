@@ -32,15 +32,16 @@
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
           data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
           aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon text-end"></span>
         </button>
       </div>
       <div class="navbar-nav">
         <div class="nav-item text-nowrap ms-2">
-          <a class="nav-link" href="{{ route('logout') }}"
+          <a class="nav-link pe-3" href="{{ route('logout') }}"
             onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-            {{ __('Disconnettiti') }}
+           <i class="fa-solid fa-arrow-right-from-bracket"></i>
+           {{ __('Esci') }}
           </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
