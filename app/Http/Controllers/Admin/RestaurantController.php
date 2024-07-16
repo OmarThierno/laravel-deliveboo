@@ -82,18 +82,41 @@ class RestaurantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $slug)
     {
-        //
+        $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
+        $typologies = Typology::all();
+
+        return view('admin.restaurants.edit', compact('restaurant', 'typologies'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
+
+        $request->validate([
+            'business_name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'image' => 'nullable',
+            'vat_number' => 'required|integer',
+            'typology_id' => 'required|string|max:255',
+        ]);
+
+        $data = $request->all();
+        $restaurant->fill($data);
+        $restaurant->slug = Str::slug($request->business_name);
+        // $this->associateTypology($restaurant, $request->typology_name);
+        $restaurant->save();
+
+        $restaurant->typologies()->sync([$request->typology_id]);
+
+        return redirect()->route('admin.restaurants.show', ['restaurant' => $restaurant->slug])->with('success', 'Restaurant updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
