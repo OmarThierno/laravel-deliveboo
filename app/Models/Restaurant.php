@@ -11,8 +11,8 @@ class Restaurant extends Model
     use HasFactory;
 
     // 1:1
-    public function user(){
-
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -28,5 +28,12 @@ class Restaurant extends Model
         return $this->belongsToMany(Typology::class);
     }
 
-    protected $fillable = ['user_id', 'business_name', 'slug', 'address', 'image', 'vat_number'];
+    protected $fillable = [
+        'user_id',
+        'business_name',
+        'slug',
+        'address',
+        'image',
+        'vat_number'
+    ];
 }

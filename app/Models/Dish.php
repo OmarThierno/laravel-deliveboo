@@ -10,16 +10,25 @@ class Dish extends Model
     use HasFactory;
 
     // 1:N
-    public function restaurant(){
-
-        $this->belongsTo(Restaurant::class);
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
     }
 
     // N:N
     public function orders()
     {
-        $this->belongsToMany(Order::class);
+        return $this->belongsToMany(Order::class);
     }
 
-    protected $fillable = ['restaurant_id', 'name', 'slug', 'description', 'allergens', 'price', 'visibility', 'thumb'];
+    protected $fillable = [
+        'restaurant_id',
+        'name',
+        'slug',
+        'description',
+        'allergens',
+        'price',
+        'visibility',
+        'thumb'
+    ];
 }

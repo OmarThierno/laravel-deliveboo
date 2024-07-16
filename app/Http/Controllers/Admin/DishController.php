@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DishController extends Controller
 {
@@ -15,8 +16,10 @@ class DishController extends Controller
      */
     public function index()
     {
-        $user = Auth::id();
-        $dishes = Dish::with('user')->where('restaurant_id', $user)->paginate(10);
+        $user_id = Auth::id();
+        $dishes = Dish::whereHas('restaurant', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->paginate(10);
 
         return view('admin.dishes.index', compact('dishes'));
     }
@@ -28,59 +31,100 @@ class DishController extends Controller
     {
         return view('admin.dishes.create');
     }
-    
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'allergens' => 'nullable|string',
+            'price' => 'required|numeric',
+            'thumb' => 'nullable|image',
+        ]);
 
-        $dish = new Dish();
-        $dish->fill($data);
-        $dish->visibility = 1;
-        $dish->slug = Str::slug($request->name);
-        // $dish->restaurant_id = Auth::id();
-        $dish->save();
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+        $data['visibility'] = 1;
+
+        $restaurant = Auth::user()->restaurant;
+        $data['restaurant_id'] = $restaurant->id;
+
+        if ($request->hasFile('thumb')) {
+            $imagePath = $request->file('thumb')->store('dishes');
+            $data['thumb'] = $imagePath;
+        }
+
+        $dish = Dish::create($data);
+
+        return redirect()->route('admin.dishes.show', $dish->slug)->with('success', 'Piatto creato con successo!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Dish $dish)
+    public function show($slug)
     {
+        $dish = Dish::where('slug', $slug)->firstOrFail();
         return view('admin.dishes.show', compact('dish'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $slug)
+    public function edit($slug)
     {
-        $dish = Dish::where('slug', $slug)->first();
+        $dish = Dish::where('slug', $slug)->firstOrFail();
         return view('admin.dishes.edit', compact('dish'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dish $dish)
+    public function update(Request $request, $slug)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'allergens' => 'nullable|string',
+            'price' => 'required|numeric',
+            'thumb' => 'nullable|image',
+        ]);
+
+        $dish = Dish::where('slug', $slug)->firstOrFail();
         $data = $request->all();
-        $dish->slug = Str::slug($request->name);
+        $data['slug'] = Str::slug($request->name);
+
+        // Aggiorna l'immagine se è stata fornita
+        if ($request->hasFile('thumb')) {
+            $imagePath = $request->file('thumb')->store('dishes');
+            $data['thumb'] = $imagePath;
+
+            if ($dish->thumb) {
+                Storage::delete($dish->thumb);
+            }
+        }
 
         $dish->update($data);
 
-
-        return redirect()->route('admin.dishes.show');
+        return redirect()->route('admin.dishes.show', $dish->slug)->with('success', 'Piatto aggiornato con successo!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($slug)
     {
-        //
+        $dish = Dish::where('slug', $slug)->firstOrFail();
+
+        if ($dish->thumb) {
+            Storage::delete($dish->thumb);
+        }
+
+        $dish->delete();
+
+        return redirect()->route('admin.dishes.index')->with('success', 'Piatto eliminato con successo!');
     }
 }
