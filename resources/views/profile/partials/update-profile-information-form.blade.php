@@ -34,13 +34,13 @@
                         {{ __('Il tuo indirizzo email non è verificato') }}
 
                         <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Clicca qui per ricevere di nuovo il codice di verifica') }}
+                            {{ __('Clicca qui per ricevere di nuovo il codice di verifica.') }}
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
                         <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('Un nuovo link di verifica è stato inviato al tuo indirizzo email') }}
+                            {{ __('Un nuovo link di verifica è stato inviato al tuo indirizzo email.') }}
                         </p>
                     @endif
                 </div>
