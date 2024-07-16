@@ -1,10 +1,29 @@
 @import "~bootstrap/scss/bootstrap";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
+
+//Bottone dettagli
 .btn-details:hover {
     color: rgb(255, 255, 255);
 }
 
+//Paginazione
 .pagination {
     padding-left: 1rem;
 }
+
+//WELCOME________________________________
+//Background login
+.btn-welcome{
+    color: white;
+}
+.background-home{
+    background-image: url(https://i.pinimg.com/564x/2f/6e/d1/2f6ed1a18cafa6b908c9ddb4a89885e1.jpg);
+    // background-repeat: no-repeat;
+    // background-size: cover;
+}
+
+.welcome{
+    background-color: rgba(253, 253, 251, 0.5);
+}
+//_______________________________________
