@@ -35,7 +35,7 @@
                     <div class="mb-3">
                         <label for="typology_id" class="form-label">Tipologia</label>
                         <select class="form-select" id="typology_id" name="typology_id" required>
-                            <option selected>Open this select menu</option>
+                            <option value="" selected>Open this select menu</option>
                             @foreach ($typologies as $typologies)
                                 <option value="{{$typologies->id}}">{{$typologies->name}}</option>
                             @endforeach
