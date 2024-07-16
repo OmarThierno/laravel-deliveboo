@@ -33,7 +33,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('admin.restaurants.create');
+        $typologies = Typology::all();
+        return view('admin.restaurants.create', compact('typologies'));
     }
 
     /**
@@ -45,9 +46,9 @@ class RestaurantController extends Controller
         $request->validate([
             'business_name' => 'required|string|max:255',
             'address' => 'required|string',
-            'image' => 'nullable|string',
+            'image' => 'nullable',
             'vat_number' => 'required|integer',
-            'typology_name' => 'required|string|max:255',
+            'typology_id' => 'required|string|max:255',
         ]);
 
         $data = $request->all();
@@ -55,8 +56,10 @@ class RestaurantController extends Controller
         $restaurant->fill($data);
         $restaurant->slug = Str::slug($request->business_name);
         $restaurant->user_id = Auth::id();
-        $this->associateTypology($restaurant, $request->typology_name);
+        // $this->associateTypology($restaurant, $request->typology_name);
         $restaurant->save();
+
+        $restaurant->typologies()->attach($request->typology_id);
 
         return redirect()->route('admin.restaurants.create')->with('success', 'Restaurant and typology created successfully!');
     }
