@@ -1,61 +1,37 @@
+
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container">
-        <h1>Ristoranti</h1>
-        
-            <div class="d-flex justify-content-end">
-            {{-- i bottoni solo dentro il form!! --}}
-            <a class="btn btn-success m-3" href="{{ route('admin.restaurants.create') }}">Crea</a>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Dettagli Ristorante</h1>
+
+        <div class="card mx-auto" style="max-width: 500px;">
+            <div class="card-body">
+                <p class="card-text"><strong>Nome del ristorante:</strong> {{ $restaurant->business_name }}</p>
+                <p class="card-text"><strong>Indirizzo:</strong> {{ $restaurant->address }}</p>
+                <p class="card-text"><strong>P. Iva:</strong> {{ $restaurant->vat_number }}</p>
+                
+                @if ($restaurant->typologies->count() > 0)
+                    <p class="card-text"><strong>Tipologie:</strong>
+                        @foreach ($restaurant->typologies as $index => $typology)
+                            {{ $typology->name }}
+                            @if ($index < $restaurant->typologies->count() - 1)
+                                ,
+                            @endif
+                        @endforeach
+                    </p>
+                @endif
+            </div>
         </div>
-        
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome del ristorante</th>
-                    <th>Indirizzo</th>
-                    <th>P. Iva</th>
-                    <th>Dettagli</th>
-                    <th>Azioni</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($restaurants as $restaurant)
-                    <tr>
-                        <td>{{ $restaurant->id }}</td>
-                        <td>{{ $restaurant->business_name }}</td>
-                        <td>{{ $restaurant->address }}</td>
-                        <td>{{ $restaurant->vat_number }}</td>
-                        <td> <a class="btn btn-outline-warning btn-sm btn-details " href="{{ route('admin.restaurants.show', ['restaurant' => $restaurant->slug]) }}">Dettagli</a></td>
-                        <td>
-                            <!-- Pulsanti -->
-                            <div class="d-flex">
-                                {{-- MODIFICA --}}
-                                <a href="" type="button" class="btn btn-outline-primary btn-sm me-2">
-                                    <i class="fa-solid fa-pen"></i>
-                                </a>
-                                <!-- Button trigger modal -->
-                                <form action="{{route('admin.restaurants.destroy', $restaurant->slug)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    {{-- CANCELLA --}}
-                                    <button type="submit" class="btn btn-outline-danger btn-sm me-2" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
 
-        {{-- PAGINATE --}}
-        {{-- <div class="d-flex justify-content-end m-3">
-            {{ $restaurants->links('pagination::bootstrap-5') }}
-        </div> --}}
+        <div class="text-center mt-4">
+            <a href="{{ route('admin.restaurants.edit', ['restaurant' => $restaurant->slug]) }}" class="btn btn-outline-primary me-2">Modifica</a>
 
+            <form action="{{ route('admin.restaurants.destroy', ['restaurant' => $restaurant->slug]) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Sei sicuro di voler eliminare questo ristorante?')">Elimina</button>
+            </form>
+        </div>
     </div>
 @endsection

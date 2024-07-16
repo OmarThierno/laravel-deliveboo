@@ -15,17 +15,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $user = Auth::id();
-        //prelevo tutti i dati
-        $restaurants = Restaurant::with('user')->where('user_id', $user)->get();
-        // ->paginate(10);
-        
-        // if ($restaurants == null) {
-        //     $existRestaurant = false;
-        // } else {
-        //     $existRestaurant = true;
-        // }
-        return view('admin.restaurants.index', compact('restaurants'));
+        $user_id = Auth::id();
+        $restaurant = Restaurant::with('user')->where('user_id', $user_id)->firstOrFail();
+        return view('admin.restaurants.show', compact('restaurant'));
     }
 
     /**
