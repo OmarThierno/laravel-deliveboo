@@ -29,14 +29,14 @@
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
       <div class="row justify-content-between">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Deliveboo</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+        <button class="navbar-toggler position-absolute d-md-none collapsed d-flex justify-content-end" type="button" data-bs-toggle="collapse"
           data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
           aria-label="Toggle navigation">
           <span class="navbar-toggler-icon text-end"></span>
         </button>
       </div>
       <div class="navbar-nav">
-        <div class="nav-item text-nowrap ms-2">
+        <div class="nav-item text-nowrap ms-2 d-none d-md-block">
           <a class="nav-link pe-3" href="{{ route('logout') }}"
             onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -71,6 +71,17 @@
                   href="{{ route('admin.dishes.index') }}">
                   <i class="fa-solid fa-bowl-food"></i> Menu
                 </a>
+                <div class="nav-item text-nowrap ms-2 d-md-none">
+                  <a class="nav-link pe-3 text-white" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                   <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                   {{ __('Esci') }}
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                </div>
               </li>
             </ul>
 
