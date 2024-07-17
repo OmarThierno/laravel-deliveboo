@@ -11,7 +11,7 @@ class UpdateRestaurantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,8 +28,8 @@ class UpdateRestaurantRequest extends FormRequest
             
             //vat non dovrebbe essere unique?
             //il $this permette a Laravel di controllare l'unicità della vat_number tra tutti i ristoranti, eccetto il ristorante corrente che stiamo aggiornando o potrebbe darcelo come errore
-            'vat_number' => ['required', 'min:11', 'max:11'] . $this->restaurant->id,
-            'typology_id' => ['required', 'exists:typologies,id']
+            'vat_number' => ['required', 'min:11', 'max:11'],
+            'typology_id' => ['required', 'exists:typologies,id'],
         ];
     }
 

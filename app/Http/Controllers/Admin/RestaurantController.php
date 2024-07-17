@@ -91,11 +91,11 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
         $data = $request->validated();
 
-        if ($request->hasFile('image')) {
-            Storage::delete($restaurant->image);
-        }
-        $image_path = Storage::put('post_images', $request->image);
-        $data['image'] = $image_path;
+        // if ($request->hasFile('image')) {
+        //     Storage::delete($restaurant->image);
+        // }
+        // $image_path = Storage::put('post_images', $request->image);
+        // $data['image'] = $image_path;
 
 
         $restaurant->fill($data);
