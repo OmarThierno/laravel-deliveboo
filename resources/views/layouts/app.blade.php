@@ -47,7 +47,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto ">
                         <li class="nav-item ">
-                            <a class="nav-link text-danger" href="{{ url('/') }}">{{ __('Home') }}</a>
+                            <a class="nav-link text-danger" href="{{ url('/') }}">Home</a>
                         </li>
                     </ul>
 
