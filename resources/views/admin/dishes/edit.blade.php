@@ -4,11 +4,12 @@
 
     <div class="container">
         <h1 class="my-5">Modifica un piatto!</h1>
-
+        @include('partials.errors')
         <form action="{{ route('admin.dishes.update', ['dish' => $dish->slug]) }}" method="POST" class="mb-3" enctype=multipart/form-data>
             {{-- Cookie per far riconoscere il form al server --}}
             @csrf
             @method('PUT')
+
 
             <div class="mb-3">
                 <label for="name" class="form-label fw-semibold">Nome</label>
@@ -29,7 +30,7 @@
 
             <div class="mb-3">
                 <label for="price" class="form-label fw-semibold">Prezzo</label>
-                <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ old('price', $dish->price) }}">
+                <input type="text" class="form-control" id="price" name="price" value="{{ old('price', $dish->price) }}">
             </div>
 
             <div class="mb-3">  
