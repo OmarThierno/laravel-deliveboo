@@ -2,11 +2,7 @@
 
 @section('content')
     <div class="container mt-5">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+        @include('partials.session_message')
 
         <div class="card">
             <div class="card-header">
@@ -14,7 +10,7 @@
             </div>
             @include('partials.errors')
             <div class="card-body">
-                <form action="{{ route('admin.restaurants.store') }}" method="POST">
+                <form action="{{ route('admin.restaurants.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="business_name" class="form-label">Nome del ristorante</label>

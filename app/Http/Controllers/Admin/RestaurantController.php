@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Typology;
+use Illuminate\Support\Facades\Storage;
+
 class RestaurantController extends Controller
 {
     /**
@@ -43,6 +45,12 @@ class RestaurantController extends Controller
     {
 
         $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $image_path = Storage::put('post_images', $request->image);
+            $data['image'] = $image_path;
+        }
+
         $restaurant = new Restaurant();
         $restaurant->fill($data);
         $restaurant->slug = Str::slug($request->business_name);
@@ -90,6 +98,14 @@ class RestaurantController extends Controller
         ]);
 
         $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            Storage::delete($restaurant->image);
+        }
+        $image_path = Storage::put('post_images', $request->image);
+        $data['image'] = $image_path;
+
+
         $restaurant->fill($data);
         $restaurant->slug = Str::slug($request->business_name);
         // $this->associateTypology($restaurant, $request->typology_name);
@@ -106,8 +122,12 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
+        if ($restaurant->image) {
+            Storage::delete($restaurant->image);
+        }
+
         $restaurant->delete();
-        
+
         return redirect()->route('admin.restaurants.index');
     }
 }
