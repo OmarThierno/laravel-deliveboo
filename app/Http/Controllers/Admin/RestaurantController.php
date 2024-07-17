@@ -11,18 +11,19 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Typology;
 use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class RestaurantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(User $user)
     {
-        $user = Auth::user();
-        //segna che il metodo restaurant() è undefined
-        if ($user->restaurant()->exists()) {
-            $restaurant = $user->restaurant;
+        $auth_user = Auth::user();
+        $restaurant = $auth_user->restaurant;
+
+        if ($restaurant) {
             return view('admin.restaurants.show', compact('restaurant'));
         } else {
             return view('admin.restaurants.index');
