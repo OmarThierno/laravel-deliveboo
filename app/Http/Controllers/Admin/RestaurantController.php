@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Typology;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Storage;
+>>>>>>> storage_img
 
 class RestaurantController extends Controller
 {
@@ -45,6 +49,12 @@ class RestaurantController extends Controller
     {
 
         $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $image_path = Storage::put('post_images', $request->image);
+            $data['image'] = $image_path;
+        }
+
         $restaurant = new Restaurant();
         $restaurant->fill($data);
         $restaurant->slug = Str::slug($request->business_name);
@@ -82,7 +92,28 @@ class RestaurantController extends Controller
     public function update(UpdateRestaurantRequest $request, $slug)
     {
         $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
+<<<<<<< HEAD
         $data = $request->validated();
+=======
+
+        $request->validate([
+            'business_name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'image' => 'nullable',
+            'vat_number' => 'required|integer',
+            'typology_id' => 'required|string|max:255',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasFile('image')) {
+            Storage::delete($restaurant->image);
+        }
+        $image_path = Storage::put('post_images', $request->image);
+        $data['image'] = $image_path;
+
+
+>>>>>>> storage_img
         $restaurant->fill($data);
         $restaurant->slug = Str::slug($request->business_name);
 
@@ -99,6 +130,10 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
+        if ($restaurant->image) {
+            Storage::delete($restaurant->image);
+        }
+
         $restaurant->delete();
 
         return redirect()->route('admin.restaurants.index');
