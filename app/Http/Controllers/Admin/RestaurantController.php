@@ -10,10 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Typology;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Storage;
->>>>>>> storage_img
 
 class RestaurantController extends Controller
 {
@@ -92,19 +89,7 @@ class RestaurantController extends Controller
     public function update(UpdateRestaurantRequest $request, $slug)
     {
         $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
-<<<<<<< HEAD
         $data = $request->validated();
-=======
-
-        $request->validate([
-            'business_name' => 'required|string|max:255',
-            'address' => 'required|string',
-            'image' => 'nullable',
-            'vat_number' => 'required|integer',
-            'typology_id' => 'required|string|max:255',
-        ]);
-
-        $data = $request->all();
 
         if ($request->hasFile('image')) {
             Storage::delete($restaurant->image);
@@ -113,7 +98,6 @@ class RestaurantController extends Controller
         $data['image'] = $image_path;
 
 
->>>>>>> storage_img
         $restaurant->fill($data);
         $restaurant->slug = Str::slug($request->business_name);
 
