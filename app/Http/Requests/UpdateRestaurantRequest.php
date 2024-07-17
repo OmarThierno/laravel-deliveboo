@@ -34,19 +34,19 @@ class UpdateRestaurantRequest extends FormRequest
     }
 
 
-    public function messages()
-    {
-        return [
-            'business_name.required' => 'Il nome del ristorante è obbligatorio',
-            'business_name.max' => 'Il nome del ristorante non deve superare i 255 caratteri',
-            'business_name.min' => 'Il nome del ristorante deve essere di almeno 4 caratteri',
-            'address.required' => 'Indirizzo mancante',
-            'address.max' => 'L\'indirizzo non deve superare i 255 caratteri',
-            'vat_number.required' => 'La partita IVA è mancante',
-            'vat_number.digits' => 'La partita IVA deve avere esattamente 11 cifre',
-            'vat_number.unique' => 'La partita IVA è già in uso',
-            'typology_id.required' => 'Tipologia mancante: Inserire la tipologia',
-            'typology_id.exists' => 'La tipologia inserita non esiste',
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         'business_name.required' => 'Il nome del ristorante è obbligatorio',
+    //         'business_name.max' => 'Il nome del ristorante non deve superare i 255 caratteri',
+    //         'business_name.min' => 'Il nome del ristorante deve essere di almeno 4 caratteri',
+    //         'address.required' => 'Indirizzo mancante',
+    //         'address.max' => 'L\'indirizzo non deve superare i 255 caratteri',
+    //         'vat_number.required' => 'La partita IVA è mancante',
+    //         'vat_number.digits' => 'La partita IVA deve avere esattamente 11 cifre',
+    //         'vat_number.unique' => 'La partita IVA è già in uso',
+    //         'typology_id.required' => 'Tipologia mancante: Inserire la tipologia',
+    //         'typology_id.exists' => 'La tipologia inserita non esiste',
+    //     ];
+    // }
 }
