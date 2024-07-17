@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDishRequest;
 use Illuminate\Support\Str;
 use App\Models\Dish;
 use Illuminate\Http\Request;
@@ -35,17 +36,9 @@ class DishController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDishRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'allergens' => 'nullable|string',
-            'price' => 'required|numeric',
-            'thumb' => 'nullable|image',
-        ]);
-
-        $data = $request->all();
+        $data = $request->validated();
         $data['slug'] = Str::slug($request->name);
         $data['visibility'] = 1;
 
