@@ -12,7 +12,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Nome</th>
                     <th>Descrizione</th>
                     <th>Allergeni</th>
@@ -22,7 +21,6 @@
             <tbody>
                 @foreach ($dishes as $dish)
                     <tr>
-                        <td>{{ $dish->id }}</td>
                         <td>{{ $dish->name }}</td>
                         <td>{{ $dish->description }}</td>
                         <td>{{ $dish->allergens }}</td>
