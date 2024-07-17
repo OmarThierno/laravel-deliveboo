@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Ristoranti</h1>
+        <h1>Piatti</h1>
 
         <div class="d-flex justify-content-end">
             {{-- i bottoni solo dentro il form!! --}}
@@ -39,7 +39,7 @@
                             <!-- Pulsanti -->
                             <div class="d-flex justify-content-center">
                                 {{-- MODIFICA --}}
-                                <a href="" type="button" class="btn btn-outline-primary btn-sm me-2">
+                                <a href="{{ route('admin.dishes.edit', $dish->slug) }}" type="button" class="btn btn-outline-primary btn-sm me-2">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <!-- MODALE PER ELIMINARE -->
