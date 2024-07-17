@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDishRequest;
+use App\Http\Requests\UpdateDishRequest;
 use Illuminate\Support\Str;
 use App\Models\Dish;
 use Illuminate\Http\Request;
@@ -76,18 +77,10 @@ class DishController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $slug)
+    public function update(UpdateDishRequest $request, $slug)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'allergens' => 'nullable|string',
-            'price' => 'required|numeric',
-            'thumb' => 'nullable|image',
-        ]);
-
         $dish = Dish::where('slug', $slug)->firstOrFail();
-        $data = $request->all();
+        $data = $request->validated();
         $data['slug'] = Str::slug($request->name);
 
         // Aggiorna l'immagine se è stata fornita
