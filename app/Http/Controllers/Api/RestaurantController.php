@@ -17,7 +17,7 @@ class RestaurantController extends Controller
             });
         }
 
-        $restaurants = $restaurantQuery->paginate(5);
+        $restaurants = $restaurantQuery->get();
         $data = [
             'results' => $restaurants,
             'success' => true
