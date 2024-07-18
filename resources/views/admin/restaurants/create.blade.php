@@ -8,7 +8,7 @@
             <div class="card-header">
                 <h3>Crea il tuo ristorante</h3>
             </div>
-            @include('partials.errors')
+            <div class="container p-3">@include('partials.errors')</div>
             <div class="card-body">
                 <form action="{{ route('admin.restaurants.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf

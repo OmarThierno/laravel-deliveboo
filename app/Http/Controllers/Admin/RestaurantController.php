@@ -18,15 +18,16 @@ class RestaurantController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(User $user)
+    public function index()
     {
         $auth_user = Auth::user();
         $restaurant = $auth_user->restaurant;
+        $error = session('errors') ? session('errors')->first('error') : null;
 
         if ($restaurant) {
-            return view('admin.restaurants.show', compact('restaurant'));
+            return view('admin.restaurants.show', compact('restaurant', 'error'));
         } else {
-            return view('admin.restaurants.index');
+            return view('admin.restaurants.index', compact('error'));
         }
     }
 

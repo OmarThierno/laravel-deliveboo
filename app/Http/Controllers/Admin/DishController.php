@@ -19,6 +19,10 @@ class DishController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()->restaurant) {
+            return redirect()->route('admin.restaurants.index')->withErrors(['error' => 'Prima di creare un piatto dovresti avere un ristorante. Creane uno direttamente qua sotto!']);
+        }
+
         $user_id = Auth::id();
         $dishes = Dish::whereHas('restaurant', function ($query) use ($user_id) {
             $query->where('user_id', $user_id);
