@@ -29,7 +29,7 @@
 
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
             <div class="row justify-content-between">
-                <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Deliveboo</a>
+              <img src="{{ asset('img/deliveboo-img2-bgBlack.png') }}" alt="Logo DeliveBoo" style="height: 42.5px; width: 200px; margin-right: 8px;">
                 <button class="navbar-toggler position-absolute d-md-none collapsed d-flex justify-content-end"
                     type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
                     aria-expanded="false" aria-label="Toggle navigation">
