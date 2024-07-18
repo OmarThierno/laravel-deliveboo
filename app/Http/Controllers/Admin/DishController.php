@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDishRequest;
 use App\Http\Requests\UpdateDishRequest;
-use Illuminate\Support\Str;
-use App\Models\Dish;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\Dish;
+use App\Models\Restaurant;
 
 class DishController extends Controller
 {
@@ -35,14 +36,58 @@ class DishController extends Controller
     }
 
     /**
+     * Create unique SKU's for dishes
+     */
+    public function generateSKU(Dish $dish)
+    {
+       // Ottieni il ristorante dell'utente autenticato
+        $restaurant = Auth::user()->restaurant;
+
+        // Abbreviazione del nome del ristorante
+        $restaurantAbbr = collect(explode(' ', $restaurant->business_name))
+            ->map(function ($word) {
+                return Str::upper(Str::substr($word, 0, 1));
+            })
+            ->implode('');
+
+        // Abbreviazione del nome del piatto
+        $dishAbbr = collect(explode(' ', $dish->name))
+            ->map(function ($word) {
+                return Str::upper(Str::substr($word, 0, 1));
+            })
+            ->implode('');
+
+        // Data di creazione formattata
+        if ($dish->created_at instanceof \DateTime) {
+            $createdDate = $dish->created_at->format('His');
+        } else {
+            $createdDate = (new \DateTime($dish->created_at))->format('His');
+        }
+
+        // SKU completo
+        $sku = $restaurantAbbr . $dishAbbr . '-' . $createdDate;
+
+        return $sku;
+    } 
+
+
+    /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDishRequest $request)
+    public function store(StoreDishRequest $request, Restaurant $restaurant)
     {
         $data = $request->validated();
-        $data['slug'] = Str::slug($request->name);
         $data['visibility'] = 1;
 
+        $tempDish = new Dish($data);
+
+        // Genera lo SKU utilizzando il ristorante e il piatto temporaneo
+        $sku = $this->generateSKU($tempDish);
+
+        // Assegna lo SKU generato al campo slug
+        $data['slug'] = $sku;
+
+        //ristorante dell'utente autenticato
         $restaurant = Auth::user()->restaurant;
         $data['restaurant_id'] = $restaurant->id;
 
@@ -51,6 +96,7 @@ class DishController extends Controller
             $data['thumb'] = $imagePath;
         }
 
+        // Crea il piatto per ottenere la data di creazione
         $dish = Dish::create($data);
 
         return redirect()->route('admin.dishes.show', $dish->slug)->with('success', 'Piatto creato con successo!');
