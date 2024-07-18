@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRestaurantRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class UpdateRestaurantRequest extends FormRequest
             
             //vat non dovrebbe essere unique?
             //il $this permette a Laravel di controllare l'unicità della vat_number tra tutti i ristoranti, eccetto il ristorante corrente che stiamo aggiornando o potrebbe darcelo come errore
-            'vat_number' => ['required', 'min:11', 'max:11'],
+            'vat_number' => ['required', 'min:11', 'max:11', Rule::unique('restaurants')->ignore($this->restaurant)],
             'typology_id' => ['required', 'exists:typologies,id'],
         ];
     }
