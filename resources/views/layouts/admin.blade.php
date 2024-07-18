@@ -29,7 +29,8 @@
 
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
             <div class="row justify-content-between">
-              <img src="{{ asset('img/deliveboo-img2-bgBlack.png') }}" alt="Logo DeliveBoo" style="height: 42.5px; width: 200px; margin-right: 8px;">
+                <img src="{{ asset('img/deliveboo_white_logo.png') }}" alt="Logo DeliveBoo"
+                    style="height: 42.5px; width: 200px; margin-right: 8px;">
                 <button class="navbar-toggler position-absolute d-md-none collapsed d-flex justify-content-end"
                     type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -72,18 +73,17 @@
                                     href="{{ route('admin.dishes.index') }}">
                                     <i class="fa-solid fa-bowl-food"></i> Menu
                                 </a>
-                                <div class="nav-item text-nowrap ms-2 d-md-none">
-                                    <a class="nav-link pe-3 text-white" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
+                                {{-- ESCI LINK --}}
+                                <a class="nav-link text-white" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                        {{ __('Esci') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    {{ __('Esci') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+
                             </li>
                         </ul>
 
