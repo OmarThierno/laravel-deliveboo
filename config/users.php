@@ -5,7 +5,11 @@ function generateName($index) {
       "Luca Rossi", "Maria Bianchi", "Giovanni Verdi", "Anna Neri", "Paolo Russo",
       "Francesca Romano", "Stefano Gallo", "Chiara Fontana", "Marco Leone", "Elena Mancini",
       "Andrea De Luca", "Sara Grimaldi", "Roberto Ricci", "Laura Marini", "Giuseppe Esposito",
-      "Martina Rizzi", "Alessandro Moretti", "Federica Vitale", "Matteo Costantini", "Silvia Fabbri"
+      "Martina Rizzi", "Alessandro Moretti", "Federica Vitale", "Matteo Costantini", "Silvia Fabbri",
+      "Giorgio Bianchi", "Lucia Ferri", "Fabio Conti", "Ilaria Lombardi", "Vittorio Giordano",
+      "Giulia Serra", "Daniele Riva", "Valentina De Angelis", "Tommaso Sartori", "Angela Marchi",
+      "Davide Greco", "Simona Piras", "Pietro Bellini", "Claudia Monti", "Lorenzo Barbieri",
+      "Veronica Caruso", "Michele Colombo", "Beatrice Marino", "Filippo Morelli", "Chiara Sala"
   ];
   return $names[$index];
 }
@@ -23,7 +27,7 @@ $password = '$2y$12$oH.vtqyAz4Al3i7cUtxHa.x8r8.0VOoQn56q6DE64mgxiqNm2TiXu';
 
 // Genera array di titolari
 $users = [];
-for ($i = 0; $i < 20; $i++) {
+for ($i = 0; $i < 40; $i++) {
   $name = generateName($i);
   $email = generateEmail($name);
 

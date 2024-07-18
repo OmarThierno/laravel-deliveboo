@@ -14,13 +14,13 @@ class TypologiesTableSeeder extends Seeder
     public function run(): void
     {
         $types = [
-            "Hamburgeria", "Pizzeria al taglio", "Focacceria", "Paninoteca", "Kebab",
-            "Friggitoria", "Chicken Wings", "Fish & Chips", "Tacos", "Burritos",
-            "Hot Dog", "Pizza al metro", "Poke Bowl", "Sushi Takeaway", "Cafeteria",
-            "Gelateria", "Donuteria", "Sandwich Bar", "Salad Bar", "Street Food"
+            "Pizzeria", "Trattoria", "Osteria", "Fish & Chips", "Enoteca",
+            "Ristorante di Pesce", "Ristorante Vegetariano", "Agriturismo", "Ristorante di Carne", "Braceria",
+            "Ristorante Gourmet", "Ristorante Tipico", "Pizzeria Gourmet", "Trattoria di Famiglia", "Ristorante di Sushi",
+            "Ristorante Etnico", "Ristorante Fusion", "Ristorante di Montagna", "Ristorante di Mare", "Ristorante Vegan"
         ];
 
-        foreach($types as $type) {
+        foreach ($types as $type) {
             $newType = new Typology();
             $newType->name = $type;
             $newType->save();

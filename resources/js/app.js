@@ -5,25 +5,27 @@ import * as bootstrap from "bootstrap";
 
 const confirmPasswordElem = document.getElementById("password-confirm");
 // console.log(confirmPasswordElem);
-
-confirmPasswordElem.addEventListener("change", () => {
-    const passwordInput = document.getElementById("password");
-    // console.log(passwordInput);
-    const formResgister = document.getElementById("register-form");
-
-    if (passwordInput.value.length !== confirmPasswordElem.value.length) {
-        console.log("diversi");
-        formResgister.addEventListener('click', (e) => {
-          e.preventDefault();
-          // console.log('clik');
-          document.getElementById('invalida-lenght').innerHTML = `<div class="alert alert-danger mt-3">Attenzione, le lunghezze delle password non corrispondono</div>`;
+if(confirmPasswordElem) {
+  confirmPasswordElem.addEventListener("change", () => {
+      const passwordInput = document.getElementById("password");
+      // console.log(passwordInput);
+      const formResgister = document.getElementById("register-form");
+  
+      if (passwordInput.value.length !== confirmPasswordElem.value.length) {
+          console.log("diversi");
+          formResgister.addEventListener('click', (e) => {
+            e.preventDefault();
+            // console.log('clik');
+            document.getElementById('invalida-lenght').innerHTML = `<div class="alert alert-danger mt-3">Attenzione, le lunghezze delle password non corrispondono</div>`;
+          })
+      }
+  
+      if(passwordInput.value.length === confirmPasswordElem.value.length) {
+        formResgister.addEventListener('click', () => {
+          document.getElementById('invalida-lenght').innerHTML = '';
+          formResgister.submit()
         })
-    }
+      }
+  });
+}
 
-    if(passwordInput.value.length === confirmPasswordElem.value.length) {
-      formResgister.addEventListener('click', () => {
-        document.getElementById('invalida-lenght').innerHTML = '';
-        formResgister.submit()
-      })
-    }
-});
