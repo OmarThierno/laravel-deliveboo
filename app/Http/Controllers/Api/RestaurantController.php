@@ -16,6 +16,10 @@ class RestaurantController extends Controller
                 $query->where('typology_id', $request->typology_id);
             });
         }
+        if ($request->search) {
+            // dd($request->search);
+            $restaurantQuery->where('business_name', 'like', '%'.$request->search. '%');
+        }
 
         $restaurants = $restaurantQuery->get();
         $data = [
