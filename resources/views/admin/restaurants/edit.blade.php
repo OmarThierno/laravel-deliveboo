@@ -3,6 +3,9 @@
 @section('content')
     <div class="container">
         <h1 class="my-5">Modifica il ristorante</h1>
+        
+        @include('partials.session_message')
+        @include('partials.errors')
 
         <form action="{{ route('admin.restaurants.update', $restaurant->slug) }}" method="POST" enctype="multipart/form-data">
             @csrf

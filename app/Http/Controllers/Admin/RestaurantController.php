@@ -87,16 +87,18 @@ class RestaurantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRestaurantRequest $request, $slug)
+    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
-        $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
+        // $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
         $data = $request->validated();
 
-        // if ($request->hasFile('image')) {
-        //     Storage::delete($restaurant->image);
-        // }
-        // $image_path = Storage::put('post_images', $request->image);
-        // $data['image'] = $image_path;
+        if ($request->hasFile('image')) {
+            if($restaurant->image) {
+                Storage::delete($restaurant->image);
+            }
+            $image_path = Storage::put('post_images', $request->image);
+            $data['image'] = $image_path;
+        }
 
 
         $restaurant->fill($data);
