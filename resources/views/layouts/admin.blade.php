@@ -73,17 +73,18 @@
                                     href="{{ route('admin.dishes.index') }}">
                                     <i class="fa-solid fa-bowl-food"></i> Menu
                                 </a>
+
                                 {{-- ESCI LINK --}}
-                                <a class="nav-link text-white" href="{{ route('logout') }}"
+                                <a class="nav-link text-white nav-item d-md-none" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                     {{ __('Esci') }}
                                 </a>
+                                {{-- /ESCI LINK --}}
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-
                             </li>
                         </ul>
 
