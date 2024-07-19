@@ -1,8 +1,21 @@
 <?php
-// Funzione per generare uno slug a partire dal nome
+
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
+
 function generateSlug($name)
 {
-  return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $name)));
+  $restaurantAbbr = collect(explode(' ', $name))
+    ->map(function ($word) {
+      return Str::upper(Str::substr($word, 0, 1));
+    })
+    ->implode('');
+
+  $createdDate = Carbon::now()->format('His');
+
+  $slug = $restaurantAbbr . '-' . $createdDate;
+
+  return $slug;
 }
 
 // Funzione per generare un numero di partita IVA
@@ -19,8 +32,8 @@ $restaurantNames = [
   "Osteria La Cantina", "Ristorante Il Sogno", "Trattoria Il Girasole",
   "Ristorante Alla Torre", "Pizzeria La Rosa", "Osteria Il Boccale",
   "Trattoria Al Ponte", "Ristorante La Piazzetta", "Pizzeria La Lanterna",
-  "Osteria Al Fiume", "Ristorante Il Campanile", "Ristorante Il Pescatore", 
-  "Trattoria La Fonte", "Pizzeria Al Volo", 
+  "Osteria Al Fiume", "Ristorante Il Campanile", "Ristorante Il Pescatore",
+  "Trattoria La Fonte", "Pizzeria Al Volo",
   "Osteria Il Cortile", "Ristorante La Quercia", "Trattoria Al Pozzo",
   "Pizzeria La Ruota", "Osteria La Luna", "Ristorante La Grotta",
   "Trattoria La Conchiglia", "Pizzeria Il Vesuvio", "Osteria Il Gabbiano",
@@ -37,7 +50,7 @@ $addresses = [
   "Via Genova, 10, Genova", "Via Verona, 11, Verona", "Via Perugia, 12, Perugia",
   "Via Parma, 13, Parma", "Via Siena, 14, Siena", "Via Modena, 15, Modena",
   "Via Trento, 16, Trento", "Via Trieste, 17, Trieste", "Via Udine, 18, Udine",
-  "Via Catania, 19, Catania", "Via Lecce, 20, Lecce", "Corso Vittorio Emanuele, 21, Roma", 
+  "Via Catania, 19, Catania", "Via Lecce, 20, Lecce", "Corso Vittorio Emanuele, 21, Roma",
   "Piazza Duomo, 22, Milano", "Viale delle Belle Arti, 23, Napoli",
   "Piazza della Signoria, 24, Firenze", "Corso Francia, 25, Torino", "Piazza Maggiore, 26, Bologna",
   "Campo San Polo, 27, Venezia", "Via Maqueda, 28, Palermo", "Corso Cavour, 29, Bari",
