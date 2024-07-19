@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Typology;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class RestaurantController extends Controller
 {
@@ -70,6 +71,11 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
+        if (!Gate::allows('view-restaurants', $restaurant)) {
+            // abort(403, 'Non autorizzato');
+            abort(404, 'Non Trovato');
+        }
+        
         return view('admin.restaurants.show', compact('restaurant'));
     }
 
@@ -81,6 +87,10 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
         $typologies = Typology::all();
 
+        if (!Gate::allows('view-restaurants', $restaurant)) {
+            abort(404, 'Non Trovato');
+        }
+
         return view('admin.restaurants.edit', compact('restaurant', 'typologies'));
     }
 
@@ -91,6 +101,11 @@ class RestaurantController extends Controller
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
         // $restaurant = Restaurant::where('slug', $slug)->firstOrFail();
+
+        if (!Gate::allows('view-restaurants', $restaurant)) {
+            abort(404, 'Non Trovato');
+        }
+
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
@@ -118,6 +133,10 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
+        if (!Gate::allows('view-restaurants', $restaurant)) {
+            abort(404, 'Non Trovato');
+        }
+
         if ($restaurant->image) {
             Storage::delete($restaurant->image);
         }
