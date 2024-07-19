@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use App\Models\Dish;
+use App\Models\Restaurant;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +24,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->registerPolicies();
+
+        Gate::define('view-dishes', function (User $user, Dish $dish) {
+            return $user->id === $dish->restaurant->user_id;
+        });
+
+        Gate::define('view-restaurants', function (User $user, Restaurant $restaurant) {
+            return $user->id === $restaurant->user_id;
+        });
+
         Paginator::useBootstrapFive();
     }
 }

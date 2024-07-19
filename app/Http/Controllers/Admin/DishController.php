@@ -11,9 +11,21 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Dish;
 use App\Models\Restaurant;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class DishController extends Controller
 {
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        Gate::define('view-dishes', function (User $user, Dish $dish) {
+            return Auth::user() === $dish->restaurant_id->id;
+        });
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -112,6 +124,11 @@ class DishController extends Controller
     public function show($slug)
     {
         $dish = Dish::where('slug', $slug)->firstOrFail();
+
+        if (!Gate::allows('view-dishes', $dish)) {
+            abort(404, 'Non Trovato');
+        }
+
         return view('admin.dishes.show', compact('dish'));
     }
 
@@ -121,6 +138,11 @@ class DishController extends Controller
     public function edit($slug)
     {
         $dish = Dish::where('slug', $slug)->firstOrFail();
+
+        if (!Gate::allows('view-dishes', $dish)) {
+            abort(404, 'Non Trovato');
+        }
+
         return view('admin.dishes.edit', compact('dish'));
     }
 
@@ -130,6 +152,11 @@ class DishController extends Controller
     public function update(UpdateDishRequest $request, $slug)
     {
         $dish = Dish::where('slug', $slug)->firstOrFail();
+
+        if (!Gate::allows('view-dishes', $dish)) {
+            abort(404, 'Non Trovato');
+        }
+
         $data = $request->validated();
         $data['slug'] = Str::slug($request->name);
 
@@ -154,6 +181,10 @@ class DishController extends Controller
     public function destroy($slug)
     {
         $dish = Dish::where('slug', $slug)->firstOrFail();
+
+        if (!Gate::allows('view-dishes', $dish)) {
+            abort(404, 'Non Trovato');
+        }
 
         if ($dish->thumb) {
             Storage::delete($dish->thumb);
