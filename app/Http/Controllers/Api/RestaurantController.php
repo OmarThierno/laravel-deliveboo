@@ -11,7 +11,7 @@ class RestaurantController extends Controller
     public function index(Request $request) {
         // dd($request->all());
         $restaurantQuery = Restaurant::with(['typologies', 'dishes']);
-        if($request->typology_id) {
+        if($request->typology_id) {                     
             $restaurantQuery->whereHas('typologies', function ($query) use ($request) {
                 $query->where('typology_id', $request->typology_id);
             });
