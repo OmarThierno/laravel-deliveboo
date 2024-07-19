@@ -158,7 +158,10 @@ class DishController extends Controller
         }
 
         $data = $request->validated();
-        $data['slug'] = Str::slug($request->name);
+
+        $tempDish = new Dish($data);
+        $sku = $this->generateSKU($tempDish);
+        $data['slug'] = $sku;
 
         // Aggiorna l'immagine se è stata fornita
         if ($request->hasFile('thumb')) {
