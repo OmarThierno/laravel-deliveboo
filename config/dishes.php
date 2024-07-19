@@ -4,7 +4,7 @@ return [
     [
         'restaurant_id' => 1,
         'name' => 'Pizza Margherita',
-        'slug' => 'pizza-margherita',
+        'slug' => 'pizza-margherita-001',
         'description' => 'Pomodoro, mozzarella, basilico',
         'allergens' => 'Glutine, Lattosio',
         'price' => 7.50,
@@ -14,7 +14,7 @@ return [
     [
         'restaurant_id' => 2,
         'name' => 'Spaghetti Carbonara',
-        'slug' => 'spaghetti-carbonara',
+        'slug' => 'spaghetti-carbonara-002',
         'description' => 'Uova, pecorino, pancetta',
         'allergens' => 'Glutine, Uova',
         'price' => 9.00,
@@ -24,7 +24,7 @@ return [
     [
         'restaurant_id' => 3,
         'name' => 'Risotto ai Funghi',
-        'slug' => 'risotto-ai-funghi',
+        'slug' => 'risotto-ai-funghi-003',
         'description' => 'Riso, funghi porcini, parmigiano',
         'allergens' => 'Lattosio',
         'price' => 11.00,
@@ -34,7 +34,7 @@ return [
     [
         'restaurant_id' => 4,
         'name' => 'Lasagne al Forno',
-        'slug' => 'lasagne-al-forno',
+        'slug' => 'lasagne-al-forno-004',
         'description' => 'Pasta, ragù, besciamella, parmigiano',
         'allergens' => 'Glutine, Lattosio',
         'price' => 8.50,
@@ -44,7 +44,7 @@ return [
     [
         'restaurant_id' => 5,
         'name' => 'Tiramisù',
-        'slug' => 'tiramisu',
+        'slug' => 'tiramisu-005',
         'description' => 'Mascarpone, caffè, savoiardi',
         'allergens' => 'Lattosio, Uova',
         'price' => 5.00,
@@ -54,7 +54,7 @@ return [
     [
         'restaurant_id' => 6,
         'name' => 'Insalata Caprese',
-        'slug' => 'insalata-caprese',
+        'slug' => 'insalata-caprese-006',
         'description' => 'Pomodori, mozzarella, basilico',
         'allergens' => 'Lattosio',
         'price' => 6.50,
@@ -64,7 +64,7 @@ return [
     [
         'restaurant_id' => 7,
         'name' => 'Bruschetta al Pomodoro',
-        'slug' => 'bruschetta-al-pomodoro',
+        'slug' => 'bruschetta-al-pomodoro-007',
         'description' => 'Pane, pomodoro, aglio, basilico',
         'allergens' => 'Glutine',
         'price' => 4.00,
@@ -74,7 +74,7 @@ return [
     [
         'restaurant_id' => 8,
         'name' => 'Pollo alla Cacciatora',
-        'slug' => 'pollo-alla-cacciatora',
+        'slug' => 'pollo-alla-cacciatora-008',
         'description' => 'Pollo, pomodoro, olive, capperi',
         'allergens' => 'Nessuno',
         'price' => 12.00,
@@ -84,7 +84,7 @@ return [
     [
         'restaurant_id' => 9,
         'name' => 'Gnocchi al Pesto',
-        'slug' => 'gnocchi-al-pesto',
+        'slug' => 'gnocchi-al-pesto-009',
         'description' => 'Gnocchi, pesto genovese, parmigiano',
         'allergens' => 'Glutine, Lattosio',
         'price' => 9.50,
@@ -94,7 +94,7 @@ return [
     [
         'restaurant_id' => 10,
         'name' => 'Frittura di Calamari',
-        'slug' => 'frittura-di-calamari',
+        'slug' => 'frittura-di-calamari-010',
         'description' => 'Calamari, farina, olio',
         'allergens' => 'Glutine',
         'price' => 13.00,
@@ -104,7 +104,7 @@ return [
     [
         'restaurant_id' => 11,
         'name' => 'Parmigiana di Melanzane',
-        'slug' => 'parmigiana-di-melanzane',
+        'slug' => 'parmigiana-di-melanzane-011',
         'description' => 'Melanzane, pomodoro, mozzarella, parmigiano',
         'allergens' => 'Lattosio',
         'price' => 10.00,
@@ -114,7 +114,7 @@ return [
     [
         'restaurant_id' => 12,
         'name' => 'Focaccia Genovese',
-        'slug' => 'focaccia-genovese',
+        'slug' => 'focaccia-genovese-012',
         'description' => 'Farina, olio, sale, rosmarino',
         'allergens' => 'Glutine',
         'price' => 3.50,
@@ -124,7 +124,7 @@ return [
     [
         'restaurant_id' => 13,
         'name' => 'Tagliata di Manzo',
-        'slug' => 'tagliata-di-manzo',
+        'slug' => 'tagliata-di-manzo-013',
         'description' => 'Manzo, rucola, grana, aceto balsamico',
         'allergens' => 'Lattosio',
         'price' => 15.00,
@@ -134,7 +134,7 @@ return [
     [
         'restaurant_id' => 14,
         'name' => 'Ravioli di Zucca',
-        'slug' => 'ravioli-di-zucca',
+        'slug' => 'ravioli-di-zucca-014',
         'description' => 'Pasta fresca, zucca, burro, salvia',
         'allergens' => 'Glutine, Lattosio',
         'price' => 10.50,
@@ -144,7 +144,7 @@ return [
     [
         'restaurant_id' => 15,
         'name' => 'Arancini Siciliani',
-        'slug' => 'arancini-siciliani',
+        'slug' => 'arancini-siciliani-015',
         'description' => 'Riso, ragù, piselli, mozzarella',
         'allergens' => 'Glutine, Lattosio',
         'price' => 5.50,
@@ -154,7 +154,7 @@ return [
     [
         'restaurant_id' => 16,
         'name' => 'Polenta e Salsiccia',
-        'slug' => 'polenta-e-salsiccia',
+        'slug' => 'polenta-e-salsiccia-016',
         'description' => 'Polenta, salsiccia, sugo di pomodoro',
         'allergens' => 'Nessuno',
         'price' => 9.00,
@@ -164,7 +164,7 @@ return [
     [
         'restaurant_id' => 17,
         'name' => 'Crostata di Frutta',
-        'slug' => 'crostata-di-frutta',
+        'slug' => 'crostata-di-frutta-017',
         'description' => 'Pasta frolla, crema pasticcera, frutta fresca',
         'allergens' => 'Glutine, Lattosio, Uova',
         'price' => 6.00,
@@ -174,7 +174,7 @@ return [
     [
         'restaurant_id' => 18,
         'name' => 'Bistecca alla Fiorentina',
-        'slug' => 'bistecca-alla-fiorentina',
+        'slug' => 'bistecca-alla-fiorentina-018',
         'description' => 'Bistecca di manzo, olio, sale',
         'allergens' => 'Nessuno',
         'price' => 25.00,
@@ -184,7 +184,7 @@ return [
     [
         'restaurant_id' => 19,
         'name' => 'Zuppa di Pesce',
-        'slug' => 'zuppa-di-pesce',
+        'slug' => 'zuppa-di-pesce-019',
         'description' => 'Pesce misto, pomodoro, pane',
         'allergens' => 'Glutine, Pesce',
         'price' => 14.00,
@@ -194,7 +194,7 @@ return [
     [
         'restaurant_id' => 20,
         'name' => 'Tortellini in Brodo',
-        'slug' => 'tortellini-in-brodo',
+        'slug' => 'tortellini-in-brodo-020',
         'description' => 'Tortellini, brodo di carne, parmigiano',
         'allergens' => 'Glutine, Lattosio',
         'price' => 8.00,

@@ -14,6 +14,7 @@ class DishesTableSeeder extends Seeder
     public function run(): void
     {
         $dishes = config('dishes');
+        // dd($dishes);
         $dishes_restaura_1 = config('dishes_restaurant_1');
         $dishes_restaura_4 = config('dishes_restaurant_4');
 

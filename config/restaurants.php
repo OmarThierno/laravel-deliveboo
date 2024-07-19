@@ -3,7 +3,7 @@
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
-function generateSlug($name)
+function generateRestaurantSlug($name)
 {
   $restaurantAbbr = collect(explode(' ', $name))
     ->map(function ($word) {
@@ -11,9 +11,11 @@ function generateSlug($name)
     })
     ->implode('');
 
-  $createdDate = Carbon::now()->format('His');
+    $rand_num = rand(000, 999);
 
-  $slug = $restaurantAbbr . '-' . $createdDate;
+    $createdDate = Carbon::now()->format('His');
+
+  $slug = $restaurantAbbr . $rand_num . '-' . $createdDate;
 
   return $slug;
 }
@@ -77,7 +79,7 @@ $restaurants = [];
 for ($i = 0; $i < count($restaurantNames); $i++) {
   $name = $restaurantNames[$i];
   $user_id = $i + 1;
-  $slug = generateSlug($name);
+  $slug = generateRestaurantSlug($name);
   $address = $addresses[$i];
   $image = $images[$i];
   $vat_number = generateVatNumber();
