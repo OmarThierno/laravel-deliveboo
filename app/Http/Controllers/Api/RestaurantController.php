@@ -22,6 +22,12 @@ class RestaurantController extends Controller
         }
 
         $restaurants = $restaurantQuery->get();
+
+        if (!$restaurants->isNotEmpty()) {
+            return response()->json([
+                'success'=> false
+            ], 404);
+        }
         $data = [
             'results' => $restaurants,
             'success' => true

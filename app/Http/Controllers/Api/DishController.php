@@ -20,6 +20,13 @@ class DishController extends Controller
         }
 
         $dishes = $dishesQuery->get();
+
+        if(!$dishes->isNotEmpty()) {
+            return response()->json([
+                'success'=> false
+            ], 404);
+        }
+
         $data = [
             'results' => $dishes,
             'success' => true,
