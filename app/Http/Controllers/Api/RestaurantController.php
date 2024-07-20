@@ -35,4 +35,15 @@ class RestaurantController extends Controller
 
         return response()->json($data);
     }
+
+    public function show(Restaurant $restaurant){
+        $restaurant->with('restaurant', 'dishes', 'typologies')->where('restaurant', $restaurant)->get();
+
+        $data = [
+            'results' => $restaurant,
+            'success' => true
+        ];
+
+        return response()->json($data);
+    }
 }
