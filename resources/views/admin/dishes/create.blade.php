@@ -11,7 +11,7 @@
             @csrf
 
             <div class="mb-3">
-                <label for="name" class="form-label fw-semibold">Nome</label>
+                <label for="name" class="form-label fw-semibold">Nome*</label>
                 <input type="text" class="form-control" id="name" name="name"  value="{{ old('name') }}" required>
             </div>
 
@@ -23,12 +23,12 @@
             
             
             <div class="mb-3">
-                <label for="allergens" class="form-label fw-semibold">Allergeni</label>
+                <label for="allergens" class="form-label fw-semibold">Allergeni*</label>
                 <input type="text" class="form-control" id="allergens" name="allergens" value="{{ old('allergens') }}">
             </div>
 
             <div class="mb-3">
-                <label for="price" class="form-label fw-semibold">Prezzo</label>
+                <label for="price" class="form-label fw-semibold">Prezzo*</label>
                 <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}" required>
             </div>
 

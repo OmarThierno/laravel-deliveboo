@@ -11,12 +11,12 @@
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <label for="business_name" class="form-label">Nome del ristorante</label>
+                <label for="business_name" class="form-label">Nome del ristorante*</label>
                 <input type="text" class="form-control" id="business_name" name="business_name"
                     value="{{ old('business_name', $restaurant->business_name) }}" required>
             </div>
             <div class="mb-3">
-                <label for="address" class="form-label">Indirizzo</label>
+                <label for="address" class="form-label">Indirizzo*</label>
                 <input type="text" class="form-control" id="address" name="address"
                     value="{{ old('address', $restaurant->address) }}" required>
             </div>
@@ -25,12 +25,12 @@
                 <input type="file" class="form-control" id="image" name="image">
             </div>
             <div class="mb-3">
-                <label for="vat_number" class="form-label">P. Iva</label>
+                <label for="vat_number" class="form-label">P. Iva*</label>
                 <input type="text" class="form-control" id="vat_number" name="vat_number"
                     value="{{ old('vat_number', $restaurant->vat_number) }}" required>
             </div>
             <div class="mb-3">
-                <label for="typology_id" class="form-label">Tipologia</label>
+                <label for="typology_id" class="form-label">Tipologia*</label>
                 <select class="form-select" id="typology_id" name="typology_id" required>
                     @foreach ($typologies as $typology)
                         <option value="{{ $typology->id }}"
