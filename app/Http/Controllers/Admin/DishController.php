@@ -13,6 +13,7 @@ use App\Models\Dish;
 use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Response;
 
 class DishController extends Controller
 {
@@ -25,7 +26,7 @@ class DishController extends Controller
             return Auth::user() === $dish->restaurant_id->id;
         });
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -56,7 +57,7 @@ class DishController extends Controller
      */
     public function generateSKU(Dish $dish)
     {
-       // Ottieni il ristorante dell'utente autenticato
+        // Ottieni il ristorante dell'utente autenticato
         $restaurant = Auth::user()->restaurant;
 
         // Abbreviazione del nome del ristorante
@@ -84,7 +85,7 @@ class DishController extends Controller
         $sku = $restaurantAbbr . $dishAbbr . '-' . $createdDate;
 
         return $sku;
-    } 
+    }
 
 
     /**
@@ -149,7 +150,7 @@ class DishController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDishRequest $request, $slug)
+    public function update(Request $request, $slug)
     {
         $dish = Dish::where('slug', $slug)->firstOrFail();
 
@@ -157,13 +158,16 @@ class DishController extends Controller
             abort(404, 'Non Trovato');
         }
 
-        $data = $request->validated();
+        if ($request->has('visibility')) {
+            // Aggiorna solo il campo visibility
+            $dish->visibility = $request->input('visibility') == '1' ? true : false;
+            $dish->save();
 
-        $tempDish = new Dish($data);
-        $sku = $this->generateSKU($tempDish);
-        $data['slug'] = $sku;
+            return response()->json(['success' => true]);
+        }
 
-        // Aggiorna l'immagine se è stata fornita
+        // Se non è stato passato il parametro visibility, gestisci l'aggiornamento degli altri campi
+        $data = $request->all();
         if ($request->hasFile('thumb')) {
             $imagePath = $request->file('thumb')->store('dishes');
             $data['thumb'] = $imagePath;
@@ -177,6 +181,7 @@ class DishController extends Controller
 
         return redirect()->route('admin.dishes.show', $dish->slug)->with('success', 'Piatto aggiornato con successo!');
     }
+
 
     /**
      * Remove the specified resource from storage.
