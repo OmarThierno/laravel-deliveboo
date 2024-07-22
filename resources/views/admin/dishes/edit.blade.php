@@ -17,14 +17,14 @@
             </div>
 
             <div class="form-group">
-                <label for="description" class="form-label fw-semibold">Descrizione</label>
+                <label for="description" class="form-label fw-semibold">Descrizione*</label>
                 <textarea name="description" class="form-control" id="description"> {{ old('description', $dish->description) }}</textarea>
             </div>
 
             
             
             <div class="mb-3">
-                <label for="allergens" class="form-label fw-semibold">Allergeni*</label>
+                <label for="allergens" class="form-label fw-semibold">Allergeni</label>
                 <input type="text" class="form-control" id="allergens" name="allergens" value="{{ old('allergens', $dish->allergens) }}" >
             </div>
 
