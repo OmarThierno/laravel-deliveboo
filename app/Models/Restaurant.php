@@ -19,7 +19,8 @@ class Restaurant extends Model
     // 1:N
     public function dishes(): HasMany
     {
-        return $this->hasMany(Dish::class);
+        //imposta la visualizzazione al front-end
+        return $this->hasMany(Dish::class)->orderBy('name', 'asc');
     }
 
     // N:N

@@ -38,7 +38,7 @@ class DishController extends Controller
         $user_id = Auth::id();
         $dishes = Dish::whereHas('restaurant', function ($query) use ($user_id) {
             $query->where('user_id', $user_id);
-        })->paginate(10);
+        })->orderBy('name', 'asc')->paginate(10); // Ordinamento alfabetico
 
         return view('admin.dishes.index', compact('dishes'));
     }
