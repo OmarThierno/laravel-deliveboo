@@ -6,6 +6,7 @@ import * as bootstrap from "bootstrap";
 const confirmPasswordElem = document.getElementById("password-confirm");
 // console.log(confirmPasswordElem);
 if(confirmPasswordElem) {
+  
   confirmPasswordElem.addEventListener("change", () => {
       const passwordInput = document.getElementById("password");
       // console.log(passwordInput);

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('hamburger.svg') }}">
-    <title>DeliveBoo</title>
+    <title>DeliveBoo Admin</title>
 
 
     <!-- Fonts -->

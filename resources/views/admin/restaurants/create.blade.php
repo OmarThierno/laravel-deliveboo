@@ -13,11 +13,11 @@
                 <form action="{{ route('admin.restaurants.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="business_name" class="form-label">Nome del ristorante*</label>
+                        <label for="business_name" class="form-label">Nome del ristorante <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="business_name" name="business_name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="address" class="form-label">Indirizzo*</label>
+                        <label for="address" class="form-label">Indirizzo <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="address" name="address" required>
                     </div>
                     <div class="mb-3">
@@ -25,11 +25,11 @@
                         <input type="file" class="form-control" id="image" name="image">
                     </div>
                     <div class="mb-3">
-                        <label for="vat_number" class="form-label">P. Iva*</label>
+                        <label for="vat_number" class="form-label">P. Iva <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="vat_number" name="vat_number" required>
                     </div>
                     <div class="mb-3">
-                        <label for="typology_id" class="form-label">Tipologia*</label>
+                        <label for="typology_id" class="form-label">Tipologia <span class="text-danger">*</span></label>
                         <select class="form-select" id="typology_id" name="typology_id" required>
                             <option value="" selected>Scegli una delle seguenti tipologie</option>
                             @foreach ($typologies as $typologies)

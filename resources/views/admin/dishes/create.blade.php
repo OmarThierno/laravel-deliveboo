@@ -11,12 +11,12 @@
             @csrf
 
             <div class="mb-3">
-                <label for="name" class="form-label fw-semibold">Nome*</label>
+                <label for="name" class="form-label fw-semibold">Nome <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="name" name="name"  value="{{ old('name') }}" required>
             </div>
 
             <div class="form-group">
-                <label for="description" class="form-label fw-semibold">Descrizione*</label>
+                <label for="description" class="form-label fw-semibold">Descrizione <span class="text-danger">*</span></label>
                 <textarea name="description" class="form-control" id="description" required>  {{ old('description') }}</textarea>
             </div>
 
@@ -28,7 +28,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="price" class="form-label fw-semibold">Prezzo*</label>
+                <label for="price" class="form-label fw-semibold">Prezzo <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}" required>
             </div>
 
