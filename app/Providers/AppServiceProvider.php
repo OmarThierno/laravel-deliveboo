@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\Dish;
 use App\Models\Restaurant;
 use App\Models\User;
+use Braintree\Gateway;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->app->singleton(Gateway::class, function($app){
+            return new Gateway([
+                    'environment' => env('BRAINTREE_ENV'),
+                    'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+                    'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+                    'privateKey' => env('BRAINTREE_PRIVATE_KEY'),
+                ],
+            );
+        });
         $this->registerPolicies();
 
         Gate::define('view-dishes', function (User $user, Dish $dish) {

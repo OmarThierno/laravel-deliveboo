@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DishController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\TypologyController;
 use Illuminate\Http\Request;
@@ -22,3 +23,6 @@ Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show']);
 
 Route::get('/typologies', [TypologyController::class, 'index']);
 Route::get('/dishes', [DishController::class, 'index']);
+
+Route::get('/orders/generate', [OrderController::class, 'generate']);
+Route::post('/orders/checkout', [OrderController::class, 'makePayment']);
