@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function makePayment(OrderRequest $request, Gateway $gateway){
 
         $result = $gateway->transaction()->sale([
-            'amount' => '10.00',
+            'amount' => '109.00',
             'paymentMethodNonce' => $request->token,
             'options' => [
                 'submitForSettlement' => true,
