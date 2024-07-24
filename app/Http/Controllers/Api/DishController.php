@@ -13,7 +13,7 @@ class DishController extends Controller
      */
     public function index(Request $request)
     {
-        $dishesQuery = Dish::where('restaurant_id', $request->restaurant_id);
+        $dishesQuery = Dish::where('visibility', true)->where('restaurant_id', $request->restaurant_id);
 
         if($request->name){
             $dishesQuery->where('name', 'like', '%'.$request->name.'%');
