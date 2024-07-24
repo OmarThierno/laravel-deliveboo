@@ -62,6 +62,9 @@
                             </div>
                         </div>
 
+                        <div class="mb-4 mt-3 row">
+                            <p class="fs-6 fst-italic"><span class="text-danger">*</span> Questi campi sono obbligatori</p>                        </div>
+
                         <div class="mb-4 row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-success">

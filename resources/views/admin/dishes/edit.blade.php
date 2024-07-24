@@ -38,6 +38,10 @@
                 <input type="file" class="form-control" id="thumb" name="thumb" value="{{ old('thumb', $dish->thumb) }}">
             </div>
 
+            <div class="mb-4 mt-4 row">
+                <p class="fs-6 fst-italic"><span class="text-danger">*</span> Questi campi sono obbligatori</p>
+            </div>
+
             <button class="btn btn-success" type="submit">Salva</button>
         </form>
 

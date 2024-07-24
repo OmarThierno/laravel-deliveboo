@@ -39,6 +39,9 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-4 mt-4 row">
+                <p class="fs-6 fst-italic"><span class="text-danger">*</span> Questi campi sono obbligatori</p>
+            </div>
             <button type="submit" class="btn btn-primary">Salva Modifiche</button>
             <a href="{{ route('admin.restaurants.show', $restaurant->slug) }}" class="btn btn-secondary">Annulla</a>
         </form>
