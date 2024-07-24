@@ -41,7 +41,7 @@ return [
     'email'                => ':Attribute non è valido.',
     'ends_with'            => ':Attribute deve finire con uno dei seguenti valori: :values',
     'enum'                 => 'Il campo :attribute non è valido.',
-    'exists'               => ':Attribute selezionato non è valido.',
+    'exists'               => ':Attribute non è stato trovato.',
     'extensions'           => 'Il campo :attribute deve avere una delle seguenti estensioni: :values.',
     'file'                 => ':Attribute deve essere un file.',
     'filled'               => 'Il campo :attribute deve contenere un valore.',

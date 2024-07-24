@@ -22,8 +22,8 @@ class OrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => 'required',
             'token' => 'required',
+            'dish_id' => ['required', 'exists:dishes,id'],
         ];
     }
 }

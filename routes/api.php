@@ -25,4 +25,4 @@ Route::get('/typologies', [TypologyController::class, 'index']);
 Route::get('/dishes', [DishController::class, 'index']);
 
 Route::get('/orders/generate', [OrderController::class, 'generate']);
-Route::post('/orders/make-payment', [OrderController::class, 'makePayment']);
+Route::post('/orders/checkout', [OrderController::class, 'makePayment']);
