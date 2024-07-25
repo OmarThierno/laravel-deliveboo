@@ -30,3 +30,16 @@ if(confirmPasswordElem) {
   });
 }
 
+
+
+const orderSelectStatusElem = document.querySelectorAll('.orderSelectStatus');
+
+if(orderSelectStatusElem){
+  orderSelectStatusElem.forEach(curElem => {
+    curElem.addEventListener('change', () => {
+      curElem.parentElement.submit();
+    })
+  });
+
+}
+

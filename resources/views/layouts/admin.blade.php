@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('hamburger.svg') }}">
-    <title>DeliveBoo</title>
+    <title>DeliveBoo Admin</title>
 
 
     <!-- Fontawesome 6 cdn -->
@@ -72,6 +72,10 @@
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.dishes.index') }}">
                                     <i class="fa-solid fa-bowl-food"></i> Menu
+                                </a>
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'index' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.orders.index') }}">
+                                    <i class="fa-solid fa-clipboard-list"></i> Ordini
                                 </a>
 
                                 {{-- ESCI LINK --}}
