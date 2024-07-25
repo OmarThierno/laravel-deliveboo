@@ -23,10 +23,20 @@ class OrderController extends Controller
 
     public function makePayment(OrderRequest $request, Gateway $gateway){
 
-        $dishes = Dish::findOrFail($request->dish_id);
+        // dd(json_decode($request->dish_id, true));
+        $dataPayment  = json_decode($request->json_data, true);
+
+        $total = 0;
+
+        foreach($dataPayment as $prod){
+            $dish = Dish::findOrFail($prod['dish_id']);
+            $total += $dish['price'] * $prod['quantity'];
+        }
+
+        // dd($total);
 
         $result = $gateway->transaction()->sale([
-            'amount' => $dishes->price,
+            'amount' => $total,
             'paymentMethodNonce' => $request->token,
             'options' => [
                 'submitForSettlement' => true,

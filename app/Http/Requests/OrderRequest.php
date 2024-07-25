@@ -23,7 +23,8 @@ class OrderRequest extends FormRequest
     {
         return [
             'token' => 'required',
-            'dish_id' => ['required', 'exists:dishes,id'],
+            'json_data' => ['required'],
+            // , 'exists:dishes,id'],
         ];
     }
 }
