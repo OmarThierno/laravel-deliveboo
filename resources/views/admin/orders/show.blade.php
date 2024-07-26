@@ -34,14 +34,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($collection as $item) --}}
-                        {{-- @dd($order->dishes()) --}}
+                        {{-- @dd($order->dishes()->withPivot('quantity')->get()) --}}
+                        @foreach ($order->dishes()->withPivot('quantity')->get() as $dish)
+                        
                             <tr>
-                                <th scope="row">#</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                                <th scope="row">{{$dish->name}}</th>
+                                <td>{{$dish->pivot->quantity}}</td>
+                                <td>{{ number_format(($dish->pivot->quantity * $dish->price), 2, '.')}}€</td>
                             </tr>
-                        {{-- @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>

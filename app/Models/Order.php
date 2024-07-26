@@ -15,7 +15,8 @@ class Order extends Model
     // N:N
     public function dishes()
     {
-        $this->belongsToMany(Dish::class, 'dish_order');
+        // return $this->belongsToMany(Dish::class, 'dish_order');
+        return $this->belongsToMany(Dish::class)->withPivot('quantity');
     }
 
     protected $fillable = ['name', 'surname', 'phone_number', 'address', 'order_date', 'price', 'status'];
