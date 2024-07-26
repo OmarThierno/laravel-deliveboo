@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {   
-        $orders = Order::with('dishes')->get();
+        $orders = Order::with('dishes')->recent()->get();
 
         return view('admin.orders.index', compact('orders'));
     }
