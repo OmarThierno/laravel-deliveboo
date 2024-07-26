@@ -2,6 +2,7 @@ import "./bootstrap";
 import "~resources/scss/app.scss";
 import.meta.glob(["../img/**"]);
 import * as bootstrap from "bootstrap";
+import "./chart.js";
 
 const confirmPasswordElem = document.getElementById("password-confirm");
 // console.log(confirmPasswordElem);
