@@ -26,3 +26,5 @@ Route::get('/dishes', [DishController::class, 'index']);
 
 Route::get('/orders/generate', [OrderController::class, 'generate']);
 Route::post('/orders/checkout', [OrderController::class, 'makePayment']);
+
+Route::post('save', [OrderController::class, 'store']);
