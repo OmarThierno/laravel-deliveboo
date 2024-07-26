@@ -1,4 +1,5 @@
 import Chart from 'chart.js/auto';
+// import axios from 'axios';
 
 const labels = [
     'January',
@@ -16,7 +17,7 @@ const data = {
             label: "My First dataset",
             backgroundColor: "rgb(255, 204, 0)",
             borderColor: "rgb(255, 204, 0)",
-            data: [0, 10, 5, 2, 20, 30, 45],
+            data: priceData,
         },
     ],
 };

@@ -25,6 +25,11 @@
             <canvas id="myChart"></canvas>
         </div>
 
+    <script>
+
+    let priceData = @json($priceData);
+
+</script>
 
         <script src="{{ mix('/js/app.js') }}"></script>
     </div>
