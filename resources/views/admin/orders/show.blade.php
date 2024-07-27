@@ -21,6 +21,10 @@
                     <dd>{{ $order->address }}</dd>
                     <dt>Numero di telefono:</dt>
                     <dd>{{ $order->phone_number }}</dd>
+                    <dt>Data:</dt>
+                    <dd>{{ $order->order_date }}</dd>
+                    <dt>Ora:</dt>
+                    <dd>{{ date_format($order->created_at, "H:i:s") }}</dd>
                 </dl>
                 <hr>
                 <h5 class="card-title">Ordine</h5>
