@@ -16,7 +16,10 @@ class OrderController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
+        if (!Auth::user()->restaurant) {
+            return redirect()->route('admin.restaurants.index')->withErrors(['error' => 'Prima vedere gli ordini dovresti avere un ristorante. Creane uno direttamente qua sotto!']);
+        }
         
         $orderQuery =  Order::with('dishes')->recent();
 
