@@ -21,20 +21,17 @@ class OrderController extends Controller
             return redirect()->route('admin.restaurants.index')->withErrors(['error' => 'Prima vedere gli ordini dovresti avere un ristorante. Creane uno direttamente qua sotto!']);
         }
         
-        $orderQuery =  Order::with('dishes')->recent();
+        $user = Auth::id();
+        $restaurant = Restaurant::where('user_id', $user)->first();
+        $orderQuery = [];
 
-        $restaurants = Restaurant::all();
-        foreach ($restaurants as $restaurant) {
-            if(Auth::id() === $restaurant->user_id) {
-                $orderQuery->whereHas('dishes', function ($query) use ($restaurant) {
-                    $query->where('restaurant_id', $restaurant->id);
-                });
-            }
-            $user = Auth::id() === $restaurant->user_id;
-
+        if($restaurant !== null) {
+            $orderQuery =  Order::with('dishes')->recent()->whereHas('dishes', function ($query) use ($restaurant) {
+                $query->where('restaurant_id', $restaurant->id);
+            })->get();
         }
-        
-        $orders = $orderQuery->get();
+
+        $orders = $orderQuery;
 
         return view('admin.orders.index', compact('orders'));
     }
