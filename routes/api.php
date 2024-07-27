@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DishController;
+use App\Http\Controllers\Api\OpenAiHandlerController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\TypologyController;
@@ -28,3 +29,5 @@ Route::get('/orders/generate', [OrderController::class, 'generate']);
 Route::post('/orders/checkout', [OrderController::class, 'makePayment']);
 
 Route::post('save', [OrderController::class, 'store']);
+
+Route::post('/chat', [OpenAiHandlerController::class, 'chat']);
