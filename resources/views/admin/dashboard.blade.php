@@ -14,10 +14,21 @@
                             </div>
                         @endif
 
-                        <p class="fs-3 m-0">Accesso effettuato correttamente <span class="fw-semibold text-success">{{ Auth::user()->name }}</span>!</p>
+                        <p class="fs-3 m-0">Accesso effettuato correttamente <span
+                                class="fw-semibold text-success">{{ Auth::user()->name }}</span>!</p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div style="width: 600px; margin: auto;">
+            <canvas id="myChart"></canvas>
+        </div>
+
+    <script>
+        let priceData = @json($priceData);
+    </script>
+
+        <script src="{{ mix('/js/app.js') }}"></script>
     </div>
 @endsection

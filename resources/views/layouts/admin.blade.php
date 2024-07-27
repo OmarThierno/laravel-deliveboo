@@ -10,6 +10,8 @@
     <link rel="shortcut icon" href="{{ asset('hamburger.svg') }}">
     <title>DeliveBoo Admin</title>
 
+    {{-- ChartJS --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
 
     <!-- Fontawesome 6 cdn -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'
