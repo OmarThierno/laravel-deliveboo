@@ -14,7 +14,7 @@ class OpenAiHandlerController extends Controller
 
             $message = $request->message;
           
-            if (!$request->thread_id) {
+            if (!$request->thread_id && $request->thread_id === null) {
               $thread_id = '';
             } else {
               $thread_id = $request->thread_id;
