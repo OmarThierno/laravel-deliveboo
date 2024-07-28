@@ -109,7 +109,7 @@ class DishController extends Controller
         $data['restaurant_id'] = $restaurant->id;
 
         if ($request->hasFile('thumb')) {
-            $imagePath = $request->file('thumb')->store('dishes');
+            $imagePath = Storage::put('post_images', $request->thumb);
             $data['thumb'] = $imagePath;
         }
 
@@ -168,13 +168,13 @@ class DishController extends Controller
 
         // Se non è stato passato il parametro visibility, gestisci l'aggiornamento degli altri campi
         $data = $request->all();
-        if ($request->hasFile('thumb')) {
-            $imagePath = $request->file('thumb')->store('dishes');
-            $data['thumb'] = $imagePath;
 
-            if ($dish->thumb) {
+        if ($request->hasFile('thumb')) {
+            if ($request->thumb) {
                 Storage::delete($dish->thumb);
             }
+            $imagePath = $imagePath = Storage::put('post_images', $request->thumb);
+            $data['thumb'] = $imagePath;
         }
 
         $dish->update($data);
