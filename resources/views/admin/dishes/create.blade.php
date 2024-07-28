@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="container">
         <h1 class="my-5">Aggiungi un piatto!</h1>
 
@@ -12,16 +11,18 @@
 
             <div class="mb-3">
                 <label for="name" class="form-label fw-semibold">Nome <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="name" name="name"  value="{{ old('name') }}" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
+                    required>
             </div>
 
             <div class="form-group">
-                <label for="description" class="form-label fw-semibold">Descrizione <span class="text-danger">*</span></label>
+                <label for="description" class="form-label fw-semibold">Descrizione <span
+                        class="text-danger">*</span></label>
                 <textarea name="description" class="form-control" id="description" required>  {{ old('description') }}</textarea>
             </div>
 
-            
-            
+
+
             <div class="mb-3">
                 <label for="allergens" class="form-label fw-semibold">Allergeni</label>
                 <input type="text" class="form-control" id="allergens" name="allergens" value="{{ old('allergens') }}">
@@ -29,13 +30,21 @@
 
             <div class="mb-3">
                 <label for="price" class="form-label fw-semibold">Prezzo <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}" required>
+                <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}"
+                    required>
             </div>
 
-            <div class="mb-3">  
-                <label for="thumb" class="form-label fw-semibold">Immagine</label>
-                <input type="file" class="form-control" id="thumb" name="thumb" value="{{ old('thumb') }}">
+            <div class="mb-3">
+                <label for="image" class="form-label fw-semibold">Immagine</label>
+                <input type="file" class="form-control" id="image" name="thumb" value="{{ old('thumb') }}">
             </div>
+            {{-- IMMAGINE --}}
+            <div class="mt-3 mb-2">
+                <!-- Impostazioni delle dimensioni massime dell'immagine di anteprima -->
+                <img class="d-none img-thumbnail" id="preview_image" src="" alt="Anteprima Immagine"
+                    style="max-width: 200px; max-height: 200px;">
+            </div>
+            {{-- IMMAGINE --}}
 
             <div class="mb-4 mt-4 row">
                 <p class="fs-6 fst-italic"><span class="text-danger">*</span> Questi campi sono obbligatori</p>
