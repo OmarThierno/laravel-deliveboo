@@ -64,16 +64,22 @@ if (confirmPasswordElem) {
         }
     });
 }
-
+// STATUS ORDERS 
 const orderSelectStatusElem = document.querySelectorAll(".orderSelectStatus");
 
-if (orderSelectStatusElem) {
+if (orderSelectStatusElem.length > 0) {
     orderSelectStatusElem.forEach((curElem) => {
         curElem.addEventListener("change", () => {
             curElem.parentElement.submit();
         });
     });
 }
+
+// FILTER STATUS 
+const filterSelectStatusElem = document.querySelector("#filter select");
+filterSelectStatusElem.addEventListener('change', () => {
+    filterSelectStatusElem.parentElement.submit();
+})
 
 
 // CHART.JS (caricamento dinamico)___________________________

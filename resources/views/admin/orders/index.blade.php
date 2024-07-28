@@ -2,7 +2,17 @@
 
 @section('content')
     <div class="container mt-3">
-        <h1>Index Orders</h1>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>Index Orders</h1>
+            {{-- <form id="filter" action="{{route('admin.orders.index')}}" method="GET">
+                @csrf
+                <select aria-label="Default select example" name="fillter">
+                    <option selected>Filtra per stato</option>
+                    <option value="running">Incorso</option>
+                    <option value="completed">Completato</option>
+                </select>
+            </form> --}}
+        </div>
 
         <div class="table-responsive">
             <table class="table">
@@ -25,10 +35,13 @@
                                 <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <select class="form-select" aria-label="Default select example" name="status">
-                                        <option @selected($order->status === 'running') value="running">Incorso</option>
-                                        <option @selected($order->status === 'completed') value="completed">Completato</option>
-                                    </select>
+                                    <input @checked($order->status === 'running') class="orderSelectStatus" id="incorso"
+                                        type="radio" name="status" value="running">
+                                    <label class="me-2" for="incorso">Incorso</label>
+
+                                    <input @checked($order->status === 'completed') class="orderSelectStatus" id="completato"
+                                        type="radio" name="status" value="completed">
+                                    <label for="completato">Completato</label>
                                 </form>
                             </td>
                             <td>
@@ -37,7 +50,7 @@
                                 <a href="{{ route('admin.orders.show', $order->id) }}"
                                     class="btn btn-success btn-sm d-inline d-md-none">Mostra</a>
                                 {{-- _____________________________ --}}
-                                
+
                             </td>
                             <td>
 

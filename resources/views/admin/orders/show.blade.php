@@ -8,12 +8,7 @@
                     <h1>{{ $order->name }} {{ $order->surname }}</h1>
                     <h4>#{{ $order->id }}</h4>
                 </div>
-                <form action="{{ route('admin.orders.update', $order->id) }}">
-                    <select class="form-select" aria-label="Default select example">
-                        <option @selected($order->status === 'running') value="running">Incorso</option>
-                        <option @selected($order->status === 'completed') value="completed">Completato</option>
-                    </select>
-                </form>
+                <h4 class="me-3">{{ $order->status }}</h4>
             </div>
             <div class="card-body">
                 <dl>
@@ -24,7 +19,7 @@
                     <dt>Data:</dt>
                     <dd>{{ $order->order_date }}</dd>
                     <dt>Ora:</dt>
-                    <dd>{{ date_format($order->created_at, "H:i:s") }}</dd>
+                    <dd>{{ date_format($order->created_at, 'H:i:s') }}</dd>
                 </dl>
                 <hr>
                 <h5 class="card-title">Ordine</h5>
@@ -40,15 +35,15 @@
                     <tbody>
                         {{-- @dd($order->dishes()->withPivot('quantity')->get()) --}}
                         @foreach ($order->dishes()->withPivot('quantity')->get() as $dish)
-                        
                             <tr>
-                                <th scope="row">{{$dish->name}}</th>
-                                <td>{{$dish->pivot->quantity}}</td>
-                                <td>{{ number_format(($dish->pivot->quantity * $dish->price), 2, '.')}}€</td>
+                                <th scope="row">{{ $dish->name }}</th>
+                                <td>{{ $dish->pivot->quantity }}</td>
+                                <td>{{ number_format($dish->pivot->quantity * $dish->price, 2, '.') }}€</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <h4 class="d-flex justify-content-end mt-5">Totale: {{ $order->price }}€</h4>
             </div>
         </div>
     </div>
