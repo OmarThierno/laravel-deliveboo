@@ -49,7 +49,7 @@
                             <p class="fs-6 fst-italic"><span class="text-danger">*</span> Questi campi sono obbligatori
                             </p>
                         </div>
-                        <button type="submit" class="btn btn-primary">Crea</button>
+                        <button type="submit" class="btn btn-success">Crea</button>
                 </form>
             </div>
         </div>

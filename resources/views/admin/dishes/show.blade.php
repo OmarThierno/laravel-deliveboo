@@ -12,6 +12,8 @@
                 <p class="card-text"><strong>Prezzo:</strong> {{ $dish->price }}</p>
             </div>
         </div>
-        <a href="{{route('admin.dishes.index')}}" class="text-danger">Torna Indietro</a>
+        <a href="{{ route('admin.dishes.index') }}" class="text-danger">
+            <i class="fa-solid fa-arrow-left"></i>
+            Torna Indietro</a>
     </div>
 @endsection
