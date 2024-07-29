@@ -2,7 +2,8 @@ import "./bootstrap";
 import "~resources/scss/app.scss";
 import.meta.glob(["../img/**"]);
 import * as bootstrap from "bootstrap";
-// import "./chart.js"; --> se lo inserisco non mi fa vedere la preview :( allora sono stati importati dinamicamente, in fondo!
+
+// --> se lo inserisco non mi fa vedere la preview :( allora sono stati importati dinamicamente, in fondo!
 
 //PREVIEW IMG__________________________________________________ 
 //(si può usare anche File reader)
@@ -76,18 +77,18 @@ if (orderSelectStatusElem.length > 0) {
 }
 
 // FILTER STATUS 
-const filterSelectStatusElem = document.querySelector("#filter select");
-filterSelectStatusElem.addEventListener('change', () => {
-    filterSelectStatusElem.parentElement.submit();
-})
+// const filterSelectStatusElem = document.querySelector("#filter select");
+// filterSelectStatusElem.addEventListener('change', () => {
+//     filterSelectStatusElem.parentElement.submit();
+// })
 
 
 // CHART.JS (caricamento dinamico)___________________________
 import('./chart.js')
-.then((module) => {
-    // Inizializza i grafici qui, se necessario
-    module.default(); // Esegui la funzione di default esportata da chart.js
-})
-.catch((err) => {
-    console.error("Errore nel caricamento di chart.js", err);
-});
+// .then((module) => {
+//     // Inizializza i grafici qui, se necessario
+//     module.default(); // Esegui la funzione di default esportata da chart.js
+// })
+// .catch((err) => {
+//     console.error("Errore nel caricamento di chart.js", err);
+// });

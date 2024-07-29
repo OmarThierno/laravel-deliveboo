@@ -21,8 +21,10 @@
             </div>
         </div>
 
-        <div style="width: 600px; margin: auto;">
-            <canvas id="myChart"></canvas>
+        <div class="card col-md-8 mt-4 mx-auto p-4">
+            <div style="width: 600px; margin: auto;">
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
 
     <script>

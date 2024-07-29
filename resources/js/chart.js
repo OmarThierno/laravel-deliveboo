@@ -1,13 +1,6 @@
-import Chart from 'chart.js/auto';
+import Chart from "chart.js/auto";
 
-const labels = [
-    'Febbraio',
-    'Marzo',
-    'Aprile',
-    'Maggio',
-    'Giugno',
-    'Luglio',
-];
+const labels = ["Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio"];
 
 const data = {
     labels: labels,
@@ -22,12 +15,9 @@ const data = {
 };
 
 const config = {
-    type: 'line',
+    type: "line",
     data: data,
-    options: {}
+    options: {},
 };
 
-new Chart(
-    document.getElementById('myChart'),
-    config
-);
+new Chart(document.getElementById("myChart"), config);
