@@ -28,7 +28,7 @@ class OrderController extends Controller
         if($restaurant !== null) {
             $orderQuery =  Order::with('dishes')->whereHas('dishes', function ($query) use ($restaurant) {
                 $query->where('restaurant_id', $restaurant->id);
-            })->get();
+            })->paginate(15);
         }
 
         $orders = $orderQuery;
