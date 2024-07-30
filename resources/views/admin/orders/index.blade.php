@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-3">
         <div class="d-flex justify-content-between align-items-center">
-            <h1>Index Orders</h1>
+            <h1 class="mb-3">Ordini</h1>
             {{-- <form id="filter" action="{{route('admin.orders.index')}}" method="GET">
                 @csrf
                 <select aria-label="Default select example" name="fillter">

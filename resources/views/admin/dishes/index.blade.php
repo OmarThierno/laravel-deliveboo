@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h1>Piatti</h1>
 
+        <h1 class="mt-3">Piatti</h1>
         <div class="d-flex justify-content-end">
             {{-- i bottoni solo dentro il form!! --}}
             <a class="btn btn-success m-3" href="{{ route('admin.dishes.create') }}">Crea</a>
@@ -45,7 +45,8 @@
                             <!-- Pulsanti -->
                             <div class="d-flex justify-content-center">
                                 {{-- MODIFICA --}}
-                                <a href="{{ route('admin.dishes.edit', $dish->slug) }}" type="button" class="btn btn-outline-primary btn-sm me-2">
+                                <a href="{{ route('admin.dishes.edit', $dish->slug) }}" type="button"
+                                    class="btn btn-outline-primary btn-sm me-2">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                                 <!-- MODALE PER ELIMINARE -->
@@ -80,29 +81,31 @@
                 // Recupero lo slug del piatto e il nuovo valore di visibilità dal selettore
                 const dishSlug = this.getAttribute('data-dish-slug');
                 const visibility = this.value;
-    
+
                 // Invio una richiesta al server per aggiornare la visibilità del piatto
                 fetch(`/admin/dishes/${dishSlug}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'X-HTTP-Method-Override': 'PUT'
-                    },
-                    body: JSON.stringify({ visibility: visibility }) // Corpo della richiesta con il nuovo valore di visibilità
-                })
-                .then(response => response.json()) // Converti la risposta del server in JSON
-                .then(data => {
-                    if (data.success) {
-                        // Mostra un messaggio di successo
-                        alert('Visibilità aggiornata con successo!');
-                    } else {
-                        // Mostra un messaggio di errore
-                        alert('Si è verificato un errore durante l\'aggiornamento della visibilità.');
-                    }
-                });
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'X-HTTP-Method-Override': 'PUT'
+                        },
+                        body: JSON.stringify({
+                            visibility: visibility
+                        }) // Corpo della richiesta con il nuovo valore di visibilità
+                    })
+                    .then(response => response.json()) // Converti la risposta del server in JSON
+                    .then(data => {
+                        if (data.success) {
+                            // Mostra un messaggio di successo
+                            alert('Visibilità aggiornata con successo!');
+                        } else {
+                            // Mostra un messaggio di errore
+                            alert(
+                                'Si è verificato un errore durante l\'aggiornamento della visibilità.');
+                        }
+                    });
             });
         });
     </script>
-    
 @endsection
